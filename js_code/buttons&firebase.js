@@ -167,13 +167,13 @@ function saveToFirebase(state, humanMove) {
 
 function initializeFirebase() {
     // Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyAy6TmnVcLWjkpSpQFtCnX-PVGignQFsiw",
-        authDomain: "packman-game.firebaseapp.com",
-        projectId: "packman-game",
-        storageBucket: "packman-game.appspot.com",
-        messagingSenderId: "819894936980",
-        appId: "1:819894936980:web:eef6650be9f4caa0d81b81"
+    const firebaseConfig = {
+        apiKey: "AIzaSyBlGSI1cFhpLnjAzrWQO3i1OOuqSuuY1tw",
+        authDomain: "stag-hunt.firebaseapp.com",
+        projectId: "stag-hunt",
+        storageBucket: "stag-hunt.appspot.com",
+        messagingSenderId: "860258363446",
+        appId: "1:860258363446:web:e7f136d6bbb58bda2b1097"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);

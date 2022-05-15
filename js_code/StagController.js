@@ -30,7 +30,7 @@ class StagController {
     }
 
     distance(pos) {
-        return Math.sqrt( Math.pow( (pos[0] - this.stag.position[0]) , 2) + Math.pow( (pos[1] - this.stag.position[1]) , 2) );
+        return Math.sqrt( Math.pow( (pos[0] - this.stag.tileFrom[0]) , 2) + Math.pow( (pos[1] - this.stag.tileFrom[1]) , 2) );
     }
 
     whereis(sub_state) {
@@ -44,13 +44,9 @@ class StagController {
         });
         return indexs;
     }
+    
+    // take a action that make it close to the target
     takeActionTo(from, to) {
-        // take a action that make it close to the award
-
-        // maybe use here astar to find the shortest path:
-        // https://github.com/bgrins/javascript-astar
-        // or this:
-        // https://github.com/rativardhan/Shortest-Path-2D-Matrix-With-Obstacles
         if(from[1] < to[1]) {
             return 40 //down
         }
@@ -66,44 +62,26 @@ class StagController {
         throw "takeActionTo("+from +","+ to+ "): could not found the action";
     }
 
-    //////////////////////////////////////////////////////////////////////////////////
-    random(state) {
-        var valid_actions = this.getValidActions(state[0]);
-        var randomAction = valid_actions[Math.floor(valid_actions.length * Math.random())];
-        return randomAction;
-    }
-
-    closest(state) {
-        var stag_pos = this.stag.tileFrom;
-        var all_positions = [this.whereis(state[1]), this.whereis(state[2])]; // whereis other players
-        
-        const SPA = new ShortestPathAlgo(state[0]);
-        
-        SPA.run(stag_pos, all_positions[0]);
-        var min_d = SPA.getMinDistance();
-        var min_path = SPA.getSortestPath();
-        
-        for (var i=1; i<all_positions.length; i++) {
-            var award_pos = all_positions[i];
-            SPA.run(stag_pos, award_pos);
-            var d = SPA.getMinDistance();
-            if(d < min_d) {
-                min_d = d;
-                min_path = SPA.getSortestPath();
-            }
-        }
-        return this.takeActionTo(min_path[0], min_path[1]);
-    }
-
-
     // the stag either moves towards the nearest agent (default) or takes a random move.
     move(state) {
         var coin = Math.random();
         if (coin < 0.5) {
-            return this.random(state);
+            var valid_actions = this.getValidActions(state[0]);
+            var randomAction = valid_actions[Math.floor(valid_actions.length * Math.random())];
+            return randomAction;
         }
         else {
-            return this.random(state);
+            var comuter_pos = this.whereis(state[1])[0];
+            var human_pos = this.whereis(state[2])[0];
+            var computer_distance = this.distance(comuter_pos);
+            var human_distance = this.distance(human_pos);
+
+            if(computer_distance < human_distance) {
+                return this.takeActionTo(this.stag.tileFrom, comuter_pos);
+            }
+            else {
+                return this.takeActionTo(this.stag.tileFrom, human_pos);
+            }
         }
     }
 }

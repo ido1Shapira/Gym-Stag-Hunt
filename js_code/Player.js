@@ -13,17 +13,12 @@ class Player{
         40 : false, //down
     };
     scores = {
-        start : 0.5,
-        stay : -0.01, //-1,
-        step : -0.05, //-5,
-        finish : 1.0 //100,
+        start : 0.0,
+        // stay : -0.01, //-1,
+        // step : -0.05, //-5,
+        // finish : 1.0 //100,
     }
-    scoresToView = {
-        start : 50,
-        stay : -1,
-        step : -5,
-        finish : 100
-    }
+    
     constructor(tileFrom , tileTo, timeMoved, dimensions, position, delayMove, iconPath) {
         this.tileFrom	= tileFrom;
         this.tileTo		= tileTo;
@@ -32,7 +27,6 @@ class Player{
         this.position	= position;
         this.delayMove	= delayMove;
         this.score = this.scores.start;
-        this.scoreToView = this.scoresToView.start;
         this.iconImage = new Image();
         this.iconImage.src = ('data/assets/entities/'+iconPath);
     }
@@ -51,7 +45,6 @@ class Player{
             this.placeAt(this.tileTo[0], this.tileTo[1]);
 
             // this.score = this.score + this.scores.step;
-            // this.scoreToView = this.scoreToView + this.scoresToView.step;
         }
         else
         {
