@@ -1,0 +1,290 @@
+<!-- code from
+http://technologies4.me//articles/character-movement-input-tile-map-a2/character-class-p1/ -->
+
+<!-- code for random maze:
+http://technologies4.me//articles/recursive-backtracking-maze-javascript-a21/maze-generation-p1/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick game</title>
+
+  <link rel="stylesheet" href="main.css">
+
+  <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script>
+
+  <script src="buttons&firebase.js"></script>
+
+  <script src="Shortest-Path-2D-Matrix-With-Obstacles.js"></script>
+  <script src="generatePermutations.js"></script>
+
+  <script src="PlayerController.js"></script>
+  <script src="StagController.js"></script>
+  <script src="Player.js"></script>
+  <script src="Shrub.js"></script>
+  <script src="main.js"></script>
+</head>
+
+
+<body>
+  <div id="container">
+    <div id="left">
+      <h1><u>Game instructions:</u></h1>
+      <p>This ia a two player game. Both players moves synchronously; that is, each time you (the red player) make a move, the blue player will
+        make a move as well---at the same time.</p>
+      <h3><u>Control:</u></h3>
+      <ul>
+        <li>In this game you control the red player.</li>
+        <li>Use the arrow keys to move left, up, right and down. You cannot travel on the dark area, but it is ok to be in the same place as the second palyer.</li>
+        <li>Use spacebar to remain in place.</li>
+      </ul>
+      <h3><u>Goal:</u></h3>
+      <ul>
+        <li>The orange circles are dirt, which must be cleaned (either by you or by the second player). To clean a piece of dirt simply move towards it.</li>
+        <li>Moving is expensive, staying (i.e., resting) is cheap.</li>
+        <li>Cleaning a piece of dirt does not cost or provide any points (until all dirt is clean).</li>
+        <li>Note that the blue player uses the same scoring schedule as you do.</li>
+      </ul>
+      <h3><u>Score:</u></h3>
+      <ul>
+        <li>You begin with 50 points. Your score may become negative; it will not affect the game-play.</li>
+        <li>The score will be calculated using the following:
+          <ul>
+            <li>A move costs 5 points.</li>
+            <li>Remaining in place costs 1 point.</li>
+            <li>Once all dirt is cleaned both players will receive 100 points (regardless of how many dirt pieces each player has cleaned).</li>
+            <li>Cleaning dirt does not cost anything.</li>
+          </ul>
+        </li>
+      </ul>   
+      <p id=goodluck><i>Good luck!</i></p>
+    </div>
+    <div id="right">
+      <div id="up">
+        <label id="showgameLabel" for="showgameButton">Click only when you have finished reading the instructions:</label>
+        <br>
+        <input type="button" value="I have read the instructions" id="showgameButton" onclick="showQuiz()">
+      </div>
+
+      <div id="quiz" class="survey" style="display:none">
+        <!-- Survey content -->
+        <div class="survey-content">
+          <div class="survey-header">
+            <span class="close">&times;</span>
+            <h2>Please answer the following quiz:</h2>
+            <div class="survey-body">
+              <form>
+                <div>
+        
+                  <div class="quiz_question">
+                    <p><b>1. Do actions encure costs?</b></p>
+                    <input type="radio" id="3_1" name="q3" value="true"/>
+                    <label for="3_1">Yes, moving costs 5 points and remaining in place costs 1 point.</label><br>
+                    <input type="radio" id="3_2" name="q3" value="false"/>
+                    <label for="3_2">Yes, moving costs 1 points and remaining in place costs 5 point.</label><br>
+                    <input type="radio" id="3_3" name="q3" value="false"/>
+                    <label for="3_3">No, actions do not incur costs.</label>
+                  </div>
+                  <!-- 
+                  <div class="quiz_question">
+                    <p><b>2. Does it cost to clean the dirt?</b></p>
+                    <input type="radio" id="1_1" name="q1" value="false"/>
+                    <label for="1_1">Yes, its costs 1 point.</label><br>
+                    <input type="radio" id="1_2" name="q1" value="false"/>
+                    <label for="1_2">Yes, its costs 2 point.</label><br>
+                    <input type="radio" id="1_3" name="q1" value="true"/>
+                    <label for="1_3">No, it does not cost anything.</label>
+                  </div> -->
+
+                  <div class="quiz_question">
+                    <p><b>2. How can you remain in place?</b></p>
+                    <input type="radio" id="1_1" name="q1" value="false"/>
+                    <label for="1_1">It is not posible to remain in place.</label><br>
+                    <input type="radio" id="1_2" name="q1" value="false"/>
+                    <label for="1_2">By pressing the enter key.</label><br>
+                    <input type="radio" id="1_3" name="q1" value="true"/>
+                    <label for="1_3">By pressing the space-bar.</label>
+                  </div>
+
+                  <div class="quiz_question">
+                    <p><b>3. How does the game end?</b></p>
+                    <input type="radio" id="2_1" name="q2" value="false"/>
+                    <label for="2_1">When the two players reach the other end of the board.</label><br>
+                    <input type="radio" id="2_2" name="q2" value="true"/>
+                    <label for="2_2">When there is no more dirt left.</label><br>
+                    <input type="radio" id="2_3" name="q2" value="false"/>
+                    <label for="2_3">When the two players collide.</label>
+                  </div>
+                  
+                </div>
+                <br>
+                <input type="button" id=returnToInstructions ; value="Return to instructions"/>
+                <input type="button" onclick="checkQuiz();" ; value="Submit quiz"/>
+                <input type="button" id=continueToGame style="color: rgb(45, 223, 45); display:none;" onclick="startGame();" ; value="Continue to game"/>
+                <p id="notFillAll1" style="color: red; display:none;">Did not submit, please fill all fields!</p>
+              </form>
+            </div>
+            <div class="survey-footer">
+              <h3>After answering all questions correctly you will be able to play the game.</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="down">
+        <canvas id="game" width="500" height="500"></canvas>
+      </div>
+    </div>
+  </div>
+  
+  <h2 style="color: red;"> This game may only be played once, violators will be rejected.</h2>
+
+  <div id="end-game-code-div"
+      style="display: none; flex-direction: row; margin-top: 2%; justify-content: center; align-items: center;">
+      <h1>Thank you for your participating!</h1>
+      <p>your code is:</p>
+      <input type="text" value="" id="code" readonly style="width: 300px;">
+      <br>
+      <br>
+      <br>
+      <div class="tooltip">
+        <input type="button" value="Copy to clipboard" id="copytoclipboard" onclick="copytoclipboard()">
+        <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+      </div>
+    </div>
+
+  <div id="survey" class="survey" style="display:none">
+    <!-- Survey content -->
+    <div class="survey-content">
+      <div class="survey-header">
+        <h2 id="survey_title">Please fill the following survey:</h2>
+        <div class="survey-body">
+          <form id="contactForm">
+
+            <div class="grid-container">
+              <div>
+                <label for="yBirth">Year of Birth:</label><br>
+                <input type="number" id="yBirth" name="birthyear" min="1930" max="2022" step="1" />
+              </div>
+
+              <div>
+                <label for="gender">Gender:</label><br>
+                <select id="gender" name="gender">
+                  <option selected disabled hidden style='display: none' value=''></option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="education">Education:</label><br>
+                <select id="education" name="education">
+                  <option selected disabled hidden style='display: none' value=''></option>
+                  <option value="High School">High School</option>
+                  <option value="BA">BA</option>
+                  <option value="Master's degree">Master's degree</option>
+                  <option value="Ph.D">Ph.D</option>
+                  <option value="none">None</option>
+                </select>
+              </div>
+
+            </div>
+            <p>To what extent do you agree with the following statments?</p>
+
+            <table class="rating-table">
+              <tr>
+                <td></td>
+                <td><label>Strongly agree</label></td>
+                <td><label>Agree</label></td>
+                <td><label>Slightly agree</label></td>
+                <td><label>Neutral</label></td>
+                <td><label>Slightly disagree</label></td>
+                <td><label>Disagree</label></td>
+                <td><label>Strongly disagree</label></td>
+              </tr>
+              <tr>
+                <td class="td-title">
+                  <p>The blue player played selfishly</p>
+                </td>
+                <td><input type="radio" name="selfishly_rating" value="7" id="q7" title="strongly agree" /></td>
+                <td><input type="radio" name="selfishly_rating" value="6" id="q6" title="agree" /></td>
+                <td><input type="radio" name="selfishly_rating" value="5" id="q5" title="slightly agree" /></td>
+                <td><input type="radio" name="selfishly_rating" value="4" id="q4" title="neutral" /></td>
+                <td><input type="radio" name="selfishly_rating" value="3" id="q3" title="slightly disagree" /></td>
+                <td><input type="radio" name="selfishly_rating" value="2" id="q2" title="disagree" /></td>
+                <td><input type="radio" name="selfishly_rating" value="1" id="q1" title="strongly disagree" /></td>
+              </tr>
+              <tr>
+                <td class="td-title">
+                  <p>The blue player was collaborative</p>
+                </td>
+                <td><input type="radio" name="collaborative_rating" value="7" id="q7" title="strongly agree" /></td>
+                <td><input type="radio" name="collaborative_rating" value="6" id="q6" title="agree" /></td>
+                <td><input type="radio" name="collaborative_rating" value="5" id="q5" title="slightly agree" /></td>
+                <td><input type="radio" name="collaborative_rating" value="4" id="q4" title="neutral" /></td>
+                <td><input type="radio" name="collaborative_rating" value="3" id="q3" title="slightly disagree" /></td>
+                <td><input type="radio" name="collaborative_rating" value="2" id="q2" title="disagree" /></td>
+                <td><input type="radio" name="collaborative_rating" value="1" id="q1" title="strongly disagree" /></td>
+              </tr>
+              <tr>
+                <td class="td-title">
+                  <p>The blue player played wisely</p>
+                </td>
+                <td><input type="radio" name="wisely_rating" value="7" id="q7" title="strongly agree" /></td>
+                <td><input type="radio" name="wisely_rating" value="6" id="q6" title="agree" /></td>
+                <td><input type="radio" name="wisely_rating" value="5" id="q5" title="slightly agree" /></td>
+                <td><input type="radio" name="wisely_rating" value="4" id="q4" title="neutral" /></td>
+                <td><input type="radio" name="wisely_rating" value="3" id="q3" title="slightly disagree" /></td>
+                <td><input type="radio" name="wisely_rating" value="2" id="q2" title="disagree" /></td>
+                <td><input type="radio" name="wisely_rating" value="1" id="q1" title="strongly disagree" /></td>
+              </tr>
+              <tr>
+                <td class="td-title">
+                  <p>The blue player was predictable</p>
+                </td>
+                <td><input type="radio" name="predictable_rating" value="7" id="q7" title="strongly agree" /></td>
+                <td><input type="radio" name="predictable_rating" value="6" id="q6" title="agree" /></td>
+                <td><input type="radio" name="predictable_rating" value="5" id="q5" title="slightly agree" /></td>
+                <td><input type="radio" name="predictable_rating" value="4" id="q4" title="neutral" /></td>
+                <td><input type="radio" name="predictable_rating" value="3" id="q3" title="slightly disagree" /></td>
+                <td><input type="radio" name="predictable_rating" value="2" id="q2" title="disagree" /></td>
+                <td><input type="radio" name="predictable_rating" value="1" id="q1" title="strongly disagree" /></td>
+              </tr>
+              <tr>
+                <td class="td-title">
+                  <p>I felt the blue player was a computer</p>
+                </td>
+                <td><input type="radio" name="computer_rating" value="7" id="q7" title="strongly agree" /></td>
+                <td><input type="radio" name="computer_rating" value="6" id="q6" title="agree" /></td>
+                <td><input type="radio" name="computer_rating" value="5" id="q5" title="slightly agree" /></td>
+                <td><input type="radio" name="computer_rating" value="4" id="q4" title="neutral" /></td>
+                <td><input type="radio" name="computer_rating" value="3" id="q3" title="slightly disagree" /></td>
+                <td><input type="radio" name="computer_rating" value="2" id="q2" title="disagree" /></td>
+                <td><input type="radio" name="computer_rating" value="1" id="q1" title="strongly disagree" /></td>
+              </tr>
+            </table>
+            <label for="additionalcomments">Additional Comments:</label>
+            <textarea id="additionalcomments" name="additionalcomments"
+              placeholder="Write any additional comments if you like..."></textarea>
+
+            <input id="submit" type="button" onclick="submitSurvey()" ; value="Submit">
+            <p id="notFillAll2" style="color: red; display:none;">Did not submit, please fill all fields!</p>
+          </form>
+        </div>
+        <div class="survey-footer">
+          <h3></h3>
+        </div>
+      </div>
+    </div>
+  
+</body>
+
+</html>
