@@ -13,5 +13,6 @@ for ep in range(episodes):
     obs, rewards, done, info = env.step([env.action_space.sample(), env.action_space.sample()])
     env.render()
 
+    time.sleep(1)
     print("info: " ,ep, iteration, rewards, done, info)
 env.close()
