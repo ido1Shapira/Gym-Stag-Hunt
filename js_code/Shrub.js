@@ -23,7 +23,7 @@ class Shrub {
                 Math.round((this.tile[1] * this.tileH) + ((this.tileH-this.dimensions[1])/2))];
     }
 
-    set_tile(computer_pos, human_pos, stag_pos, shrub_pos) {
+    set_in_random_tile(forbidden_pos) {
         var mapW = this.mapW;
         var mapH = this.mapH;
         var indexs = [];
@@ -31,10 +31,11 @@ class Shrub {
             if(elem == 1) {
                 var i = Math.floor(index / mapW);
                 var j = index % mapH;
-                if(j != computer_pos[0] && i != computer_pos[1]
-                    && j != human_pos[0] && i != human_pos[1]
-                    && j != stag_pos[0] && i != stag_pos[1]
-                    && j != shrub_pos[0] && i != shrub_pos[1]) {
+                var forbidden_pos_flag = true
+                for(var pos of forbidden_pos) {
+                    forbidden_pos_flag &= (j != pos[0] && i != pos[1])
+                }
+                if(forbidden_pos_flag) {
                         // award can not be in player tile
                     indexs.push([j,i]);
                 }

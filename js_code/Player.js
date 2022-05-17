@@ -19,10 +19,10 @@ class Player{
         // finish : 1.0 //100,
     }
     
-    constructor(tileFrom , tileTo, timeMoved, dimensions, position, delayMove, iconPath) {
+    constructor(tileFrom, tileTo, dimensions, position, delayMove, iconPath) {
         this.tileFrom	= tileFrom;
         this.tileTo		= tileTo;
-        this.timeMoved	= timeMoved;
+        this.timeMoved	= 0;
         this.dimensions	= dimensions;
         this.position	= position;
         this.delayMove	= delayMove;

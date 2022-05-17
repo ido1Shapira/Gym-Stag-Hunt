@@ -128,9 +128,7 @@ function getRating(s_rating) {
 let postID;
 let steps = 1;
 
-function finishGame(state, action) { //update database
-    saveToFirebase(state, action); //saving the last state
-
+function finishGame() { //update database
     firebase.database().ref("all-games/"+postID+"/human_score").set(human_player.score.toFixed(3));
     firebase.database().ref("all-games/"+postID+"/computer_score").set(computer_player.score.toFixed(3));
     // Get the survey
@@ -140,28 +138,20 @@ function finishGame(state, action) { //update database
 }
 
 function saveToFirebase(state, humanMove) {
-    // var url=canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
-	// var img=new Image();
-	// img.src=url
-    // firebase.database().ref("all-games/"+postID+"/img/"+steps).set({
-    //     img
-    // });
-
-    // firebase.database().ref("all-games/"+postID+"/log/"+steps).set({
-    //     state
-    // });
+    var resize_state = JSON.parse(JSON.stringify(state));
+    for (var i=0; i<resize_state.length; i++) {
+        resize_state[i] = resize_state[i].slice(1, resize_state[i].length-1);
+        for (var j=0; j<resize_state[i].length; j++) {
+            resize_state[i][j] = resize_state[i][j].slice(1, resize_state[i][j].length-1);
+        }
+    }
+    
+    console.log("update firebase! " + steps);
+    
     firebase.database().ref("humanModel/"+postID+"/"+steps).set({
-        state: state,
+        state: resize_state,
         action: humanMove
     });
-    // firebase.database().ref("all-games/"+postID+"/log/"+steps).set({
-    //     "board": state[0],
-    //     "human_trace": state[1],
-    //     "computer_trace": state[2],
-    //     "human_rewards": state[3],
-    //     "computer_rewards": state[4],
-    //     "all_rewards": state[5]
-    // });
     steps++;
 }
 

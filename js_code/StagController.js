@@ -14,6 +14,8 @@ class StagController {
                 return this.stag.tileFrom[0]>0 && board[this.stag.tileFrom[1]][this.stag.tileFrom[0]-1]==1;
             case 39: //right
                 return this.stag.tileFrom[0]<(mapW-1) && board[this.stag.tileFrom[1]][this.stag.tileFrom[0]+1]==1;
+            case 32: //stay
+                return true;
             default:
                 return false;
         }
@@ -59,7 +61,7 @@ class StagController {
         else if(from[0] > to[0]) {
             return 37 //left
         }
-        throw "takeActionTo("+from +","+ to+ "): could not found the action";
+        return 32 //stay
     }
 
     // the stag either moves towards the nearest agent (default) or takes a random move.
