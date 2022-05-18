@@ -6,6 +6,8 @@ class Controller {
 
     validAction(action) {
         switch(action) {
+            case 32: //stay
+                return true;
             case 38: //up
                 return this.controlled.tileFrom[1]>0 && this.controlled.tileFrom[1]-1>0;
             case 40: //down

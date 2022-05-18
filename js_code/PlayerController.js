@@ -71,16 +71,11 @@ class PlayerController extends Controller{
         switch(this.type) {
             case "random":
                 return this.random();
-            // case "selfish":
-            //     return this.selfish(state);
-            // case "closest":
-            //     return this.closest(state);
-            // case "farthest":
-            //     return this.farthest(state);
-            // case "TSP":
-            //     return this.TSP(state);
-            // case "mix":
-            //     return this.mix(state);
+            case "follow_stag":
+                return this.follow_stag(state);
+            case "closest":
+                return this.closest(state);
+
             // case "ddqn": case "sarl ddqn":
             // case "ppo": case "sarl ppo":
             // case "ddqn distribution": case "sarl ddqn distribution":
@@ -92,115 +87,33 @@ class PlayerController extends Controller{
 
     ////////////////////////////// All baselines ////////////////////////////////////////////////
     
-    // selfish(state) {
-    //     return 32;
-    // }
     closest(state) {
-        var player_pos = this.player_controlled.tileFrom;
-        var all_awards_positions = this.whereis(state[5]); // whereis all awards
-        
-        const SPA = new ShortestPathAlgo(state[0]);
-        
-        SPA.run(player_pos, all_awards_positions[0]);
-        var min_d = SPA.getMinDistance();
-        var min_path = SPA.getSortestPath();
-        
-        for (var i=1; i<all_awards_positions.length; i++) {
-            var award_pos = all_awards_positions[i];
-            SPA.run(player_pos, award_pos);
-            var d = SPA.getMinDistance();
-            // what happen when min_d == d ? maybe to consider the human player here
-            // TODO: ask Amos
-            if(d < min_d) {
-                min_d = d;
-                min_path = SPA.getSortestPath();
+        var shrubs_pos = [[state[7], state[6]], [state[9], state[8]], [state[11], state[10]]];
+        var idx = 0;
+        var min_dis = this.distance(shrubs_pos[0]);
+        console.log("temp: " + min_dis);
+        for(var i=1; i<shrubs_pos.length; i++) {
+            var temp = this.distance(shrubs_pos[i]);
+            console.log("temp: " + temp);
+            if(min_dis > temp) {
+                min_dis = temp;
+                idx = i;
             }
         }
-        return this.takeActionTo(min_path[0], min_path[1]);
-    }
-    farthest(state) {
-        var player_pos = this.player_controlled.tileFrom;
-        var all_awards_positions = this.whereis(state[5]); // whereis all awards
-        var human_pos = this.whereis(state[1])[0];
-        
-        const SPA = new ShortestPathAlgo(state[0]);
-        var max_d = Number.NEGATIVE_INFINITY;
-        var max_path = null;
+        console.log("min_dis: " + min_dis);
+        console.log("idx: " + idx);
+        console.log("shrubs_pos: " + shrubs_pos);
+        console.log("shrubs_pos[idx]: "+ shrubs_pos[idx]);
 
-        for (var i=0; i<all_awards_positions.length; i++) {
-            var award_pos = all_awards_positions[i];
-            SPA.run(human_pos, award_pos);
-            var d_h = SPA.getMinDistance(); //human distance
-            SPA.run(player_pos, award_pos);
-            var d_c = SPA.getMinDistance(); //computer distance
-            if(d_c <= d_h) {
-                //Check if the computer comes before the human
-                if(d_c > max_d) {
-                    max_d = d_c;
-                    max_path = SPA.getSortestPath();
-                }
-            }
-        }
-        return this.takeActionTo(max_path[0], max_path[1]);
+        var action = this.takeActionTo(shrubs_pos[idx]);
+        console.log("action: " + action);
+        return action;
     }
-    TSP(state) {
-        var player_pos = this.player_controlled.tileFrom;
-        var all_awards_positions = this.whereis(state[5]);
-        all_awards_positions.unshift(player_pos);
-        var map_cost = new Map();
-        for(var point of all_awards_positions) {
-            map_cost.set(point, new Map());
-        }
-        const SPA = new ShortestPathAlgo(state[0]);
-        var permutations = generateCityRoutes(all_awards_positions);
-        var min_cost = Number.POSITIVE_INFINITY;
-        var awards_order = [];
-        for(var path of permutations) {
-            // console.log(p);
-            var temp_cost = 0;
-            for(var i=0; i<path.length-1; i++) {
-                var point1 = path[i];
-                var point2 = path[i+1];
-                
-                var cost = map_cost.get(point1).get(point2);
-                if(cost === undefined) {
-                    //insert cost
-                    SPA.run(point1, point2);
-                    var d = SPA.getMinDistance(); //computer distance
-                    map_cost.get(point1).set(point2, d);
-                    cost = map_cost.get(point1).get(point2);
-                }
-                temp_cost += cost;
-            }
-            if(temp_cost < min_cost) {
-                min_cost = temp_cost;
-                awards_order = path;
-            }
-        }
-        SPA.run(awards_order[0], awards_order[1]);
-        var optimal_path = SPA.getSortestPath();
-        return this.takeActionTo(optimal_path[0], optimal_path[1]);
+
+    follow_stag(state) {
+        var stag_pos = [state[5], state[4]];
+        return this.takeActionTo(stag_pos);
     }
-    // mix(state) {
-    //     var baselines = Object.keys(this.TYPES);
-    //     const index = baselines.indexOf("mix");
-    //     if (index > -1) {
-    //         baselines.splice(index, 1);
-    //     }
-    //     var random_baseline = baselines[Math.floor(baselines.length * Math.random())];
-    //     switch(random_baseline) {
-    //         case "random":
-    //             return this.random(state);
-    //         case "selfish":
-    //             return this.selfish(state);
-    //         case "closest":
-    //             return this.closest(state);
-    //         case "farthest":
-    //             return this.farthest(state);
-    //         case "TSP":
-    //             return this.TSP(state);
-    //     }
-    // }
     
     ////////////////////////////// Advance agents ////////////////////////////////////////////////
     loadAgent() {

@@ -8,11 +8,12 @@ class StagController extends Controller {
     move(state) {
         var coin = Math.random();
         if (coin < 0.5) {
-            return this.random();
+            var action =  this.random();
+            return action;
         }
         else {
-            var comuter_pos = [state[0], state[1]];
-            var human_pos = [state[2], state[3]];
+            var comuter_pos = [state[1], state[0]];
+            var human_pos = [state[3], state[2]];
             var computer_distance = this.distance(comuter_pos);
             var human_distance = this.distance(human_pos);
 

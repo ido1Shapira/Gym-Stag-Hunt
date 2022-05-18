@@ -44,7 +44,7 @@ var computer_controller = null;
 firebase.database().ref("chosen-controller").once('value',
 (snap) => {
 	selectedBehavior = snap.val();
-	console.log('selectedBehavior: ' + selectedBehavior);	
+	// console.log('selectedBehavior: ' + selectedBehavior);	
 	computer_controller = new PlayerController(computer_player, selectedBehavior);
 
 	var type = computer_controller.getType();
@@ -58,15 +58,18 @@ firebase.database().ref("chosen-controller").once('value',
 });
 
 
+// init stag
 var stag = new Stag([3,3], [3,3], dimensions_objects, place_position([3,3], dimensions_objects), 500, "stag.png", gameMap, tileW, tileH, mapW, mapH);
 stag_controller = new StagController(stag, "random");
 
+// init shrubs
 var shrubs = [];
-for(var i=0; i<2; i++) {
+for(var i=0; i<3; i++) {
 	var new_shrub = new Shrub(dimensions_objects, "plant_fruit.png", gameMap, tileW, tileH, mapW, mapH);
+	new_shrub.set_in_random_tile([computer_player.tileFrom, human_player.tileFrom, stag.tileFrom], shrubs);
 	shrubs.push(new_shrub);
-	new_shrub.set_in_random_tile([computer_player.tileFrom, human_player.tileFrom, stag.tileFrom, shrubs[0].tile]);
 }
+
 
 function toIndex(x, y)
 {
@@ -85,9 +88,14 @@ function getState() {
 // Coords gets you a coordinate array with boolean tuples of size 4 signifying the presence of entities in that cell
 // (index 0 is agent A, index 1 is agent B, index 2 is stag, index 3 is plant).
 
-	var state = [computer_player.tileFrom, human_player.tileFrom, stag.tileFrom];
-	for(shrub of shrubs) {
-		state.push(shrub.tile);
+	var state = [
+				[computer_player.tileFrom[1], computer_player.tileFrom[0]],
+				[human_player.tileFrom[1], human_player.tileFrom[0]],
+				[stag.tileFrom[1], stag.tileFrom[0]]
+			];
+
+	for(var shrub of shrubs) {
+		state.push([shrub.tile[1], shrub.tile[0]]);
 	}
 	return state.flat();
 }
@@ -161,7 +169,7 @@ window.onload = function()
 	requestAnimationFrame(drawGame);
 	ctx.font = "bold 10pt sans-serif";
 
-	window.addEventListener("keyup", handleKeyUp);
+	// window.addEventListener("keyup", handleKeyUp);
 };
 
 function logics()
@@ -243,13 +251,7 @@ function logics()
 		}
 
 		if(overlaps) {
-			if(i==0) {
-				var index = i+1;
-			}
-			else{
-				var index = i-1;
-			}
-			shrubs[i].set_in_random_tile([computer_player.tileFrom, human_player.tileFrom, stag.tileFrom, shrubs[index].tile]);
+			shrubs[i].set_in_random_tile([computer_player.tileFrom, human_player.tileFrom, stag.tileFrom], shrubs);
 		}
 	}
 
@@ -258,7 +260,7 @@ function logics()
 		if(stag.tileFrom[0] == computer_player.tileFrom[0] && stag.tileFrom[1] == computer_player.tileFrom[1]) {
 			human_player.score = human_player.score + stag_reward;
 			computer_player.score = computer_player.score + stag_reward;
-			stag.set_in_random_tile([computer_player.tileFrom, human_player.tileFrom, stag.tileFrom, shrubs[0].tile, shrubs[1].tile])
+			stag.set_in_random_tile([computer_player.tileFrom, human_player.tileFrom, stag.tileFrom], shrubs);
 		}
 		// else {
 		// 	human_player.score = human_player.score + mauling_punishment;		
