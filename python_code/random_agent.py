@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 import gym
 import gym_stag_hunt
 import time
@@ -7,12 +9,11 @@ env = gym.make("StagHunt-Hunt-v0", obs_type='image', enable_multiagent=True, gri
 episodes = 5
 for ep in range(episodes):    
   env.reset()
-  episodes_per_game = 100
+  episodes_per_game = 50
   for iteration in range(episodes_per_game):
     time.sleep(.2)
     obs, rewards, done, info = env.step([env.action_space.sample(), env.action_space.sample()])
     env.render()
-
-    time.sleep(1)
+    time.sleep(0.5)
     print("info: " ,ep, iteration, rewards, done, info)
 env.close()

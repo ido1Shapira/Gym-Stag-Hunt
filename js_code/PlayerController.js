@@ -1,30 +1,22 @@
-class PlayerController{
+class PlayerController extends Controller{
     TYPES = {
         "random": false,
-        "selfish": false,
-        "farthest": false,
-        "closest": false,
-        "TSP": false,
-        // "mix": false
+        // "selfish": false,
+        // "farthest": false,
+        // "closest": false,
+        // "TSP": false,
+        // // "mix": false
 
-        "ddqn": false,
-        "sarl ddqn": false,
+        // "ddqn": false,
+        // "sarl ddqn": false,
 
-        "ppo": false,
-        "sarl ppo": false,
+        // "ppo": false,
+        // "sarl ppo": false,
 
-        "ddqn distribution": false,
-        "sarl ddqn distribution": false
+        // "ddqn distribution": false,
+        // "sarl ddqn distribution": false
     }
 
-    toIndex = {
-        'Board': 0,
-        'Human trace': 1,
-        'Computer trace': 2,
-        'Human awards': 3,
-        'Computer awards': 4,
-        'All awards': 5,
-    }
     toAction = {
         1: 37, //left
         2: 38, //up
@@ -32,7 +24,6 @@ class PlayerController{
         4: 40, //down
     }
 
-    // players_controlled = []; // option for more than one agent
     constructor(player, type) {
         //5 kinds of type:
         // 1. random - Moves randomly
@@ -42,38 +33,36 @@ class PlayerController{
         // 5. TSP - Moves by the solution of the TSP problem
         // 6. mix of all controllers
         
-        // this.players_controlled.push(player);
-        if(type == -1) {
-            var all = Object.keys(this.TYPES);
-            type = all[Math.floor(all.length * Math.random())];
-        }
-        if(type == -2) {
-            var baselines = Object.keys(this.TYPES).slice(0,5);
-            type = baselines[Math.floor(baselines.length * Math.random())];
-        }
-        if(type == -3) {
-            var ddqns = Object.keys(this.TYPES).slice(5,7);
-            type = ddqns[Math.floor(ddqns.length * Math.random())];
-        }
-        if(type == -4) {
-            var ppos = Object.keys(this.TYPES).slice(7, 9);
-            type = ppos[Math.floor(ppos.length * Math.random())];
-        }
-        if(type == -5) {
-            var distribution = Object.keys(this.TYPES).slice(9,11);
-            type = distribution[Math.floor(distribution.length * Math.random())];
-        }
-        if(type == -6) {
-            var special = ['closest', 'random', 'farthest'];
-            type = special[Math.floor(special.length * Math.random())];
-        }
+        // if(type == -1) {
+        //     var all = Object.keys(this.TYPES);
+        //     type = all[Math.floor(all.length * Math.random())];
+        // }
+        // if(type == -2) {
+        //     var baselines = Object.keys(this.TYPES).slice(0,5);
+        //     type = baselines[Math.floor(baselines.length * Math.random())];
+        // }
+        // if(type == -3) {
+        //     var ddqns = Object.keys(this.TYPES).slice(5,7);
+        //     type = ddqns[Math.floor(ddqns.length * Math.random())];
+        // }
+        // if(type == -4) {
+        //     var ppos = Object.keys(this.TYPES).slice(7, 9);
+        //     type = ppos[Math.floor(ppos.length * Math.random())];
+        // }
+        // if(type == -5) {
+        //     var distribution = Object.keys(this.TYPES).slice(9,11);
+        //     type = distribution[Math.floor(distribution.length * Math.random())];
+        // }
+        // if(type == -6) {
+        //     var special = ['closest', 'random', 'farthest'];
+        //     type = special[Math.floor(special.length * Math.random())];
+        // }
 
+        super(player)
         this.TYPES[type] = true;
         this.type = type;
-        // console.log(this.type)
-        this.player_controlled = player;
 
-        this.loadAgent();
+        // this.loadAgent();
     }
     
     getType() { return this.type; }
@@ -81,90 +70,28 @@ class PlayerController{
     move(state) {
         switch(this.type) {
             case "random":
-                return this.random(state);
-            case "selfish":
-                return this.selfish(state);
-            case "closest":
-                return this.closest(state);
-            case "farthest":
-                return this.farthest(state);
-            case "TSP":
-                return this.TSP(state);
+                return this.random();
+            // case "selfish":
+            //     return this.selfish(state);
+            // case "closest":
+            //     return this.closest(state);
+            // case "farthest":
+            //     return this.farthest(state);
+            // case "TSP":
+            //     return this.TSP(state);
             // case "mix":
             //     return this.mix(state);
-            case "ddqn": case "sarl ddqn":
-            case "ppo": case "sarl ppo":
-            case "ddqn distribution": case "sarl ddqn distribution":
-                return this.predict(state);
+            // case "ddqn": case "sarl ddqn":
+            // case "ppo": case "sarl ppo":
+            // case "ddqn distribution": case "sarl ddqn distribution":
+            //     return this.predict(state);
             default:
                 throw "move(state): not a valid baseline"
         }
     }
 
-    validAction(action, board) {
-        switch(action) {
-            case 38: //up
-                return this.player_controlled.tileFrom[1]>0 && board[this.player_controlled.tileFrom[1]-1][this.player_controlled.tileFrom[0]]==1;
-            case 40: //down
-                return this.player_controlled.tileFrom[1]<(mapH-1) && board[this.player_controlled.tileFrom[1]+1][this.player_controlled.tileFrom[0]]==1;
-            case 37: //left
-                return this.player_controlled.tileFrom[0]>0 && board[this.player_controlled.tileFrom[1]][this.player_controlled.tileFrom[0]-1]==1;
-            case 39: //right
-                return this.player_controlled.tileFrom[0]<(mapW-1) && board[this.player_controlled.tileFrom[1]][this.player_controlled.tileFrom[0]+1]==1;
-            default:
-                return false;
-        }
-    }
-    getValidActions(board) {
-        var actions = Object.keys(this.player_controlled.keysDown).map((i) => Number(i));
-        var valid_actions = [];
-        for(var i=0; i<actions.length; i++) {
-            if(this.validAction(actions[i], board)) {
-                valid_actions.push(actions[i]);
-            }
-        }
-        return valid_actions;
-    }
-
-    whereis(sub_state) {
-        var indexs = [];
-        sub_state.filter(function(row, i){
-            row.filter(function(row, j) {
-                if(row == 1) {
-                    indexs.push([j,i]);
-                }
-            });
-        });
-        return indexs;
-    }
-    takeActionTo(from, to) {
-        // take a action that make it close to the award
-
-        // maybe use here astar to find the shortest path:
-        // https://github.com/bgrins/javascript-astar
-        // or this:
-        // https://github.com/rativardhan/Shortest-Path-2D-Matrix-With-Obstacles
-        if(from[1] < to[1]) {
-            return 40 //down
-        }
-        else if(from[1] > to[1]){
-            return 38 //up
-        }
-        else if(from[0] < to[0]) {
-            return 39 //right
-        }
-        else if(from[0] > to[0]) {
-            return 37 //left
-        }
-        throw "takeActionTo("+from +","+ to+ "): could not found the action";
-    }
-
     ////////////////////////////// All baselines ////////////////////////////////////////////////
-    random(state) {
-        var valid_actions = this.getValidActions(state[0]);
-        var randomAction = valid_actions[Math.floor(valid_actions.length * Math.random())];
-        return randomAction;
-    }
+    
     // selfish(state) {
     //     return 32;
     // }

@@ -15,10 +15,10 @@ var gameMap = [
 ];
 var tileW = 70, tileH = 70;
 var mapW = 7, mapH = 7;
-var dimensions_objects = [50,50]
+var dimensions_objects = [60,60]
 
 var finishFlag = false;
-var steps_per_game = 10; // How many episodes (time steps) occur during a single game of Stag Hunt before entity positions are reset and the game is considered done.
+var steps_per_game = 30; // How many episodes (time steps) occur during a single game of Stag Hunt before entity positions are reset and the game is considered done.
 
 // reward function:
 const stag_reward = 5; // Reinforcement reward for when agents catch the stag by occupying the same cell as it at the same time. Expected to be positive.
@@ -65,13 +65,7 @@ var shrubs = [];
 for(var i=0; i<2; i++) {
 	var new_shrub = new Shrub(dimensions_objects, "plant_fruit.png", gameMap, tileW, tileH, mapW, mapH);
 	shrubs.push(new_shrub);
-	if(i==0) {
-		new_shrub.set_in_random_tile([computer_player.tileFrom, human_player.tileFrom, stag.tileFrom, shrubs[i].tile]);
-	}
-	else {
-		new_shrub.set_in_random_tile([computer_player.tileFrom, human_player.tileFrom, stag.tileFrom, shrubs[0].tile]);
-	}
-	
+	new_shrub.set_in_random_tile([computer_player.tileFrom, human_player.tileFrom, stag.tileFrom, shrubs[0].tile]);
 }
 
 function toIndex(x, y)
@@ -87,46 +81,15 @@ function zeros(dimensions) { // dimensions = [r,c]
     return array;
 }
 
-var prev_state = [[], zeros([mapW, mapH]), zeros([mapW, mapH]), zeros([mapW, mapH]), []];
-prev_state[1][human_player.tileFrom[1]][human_player.tileFrom[0]] = 1;
-prev_state[2][computer_player.tileFrom[1]][computer_player.tileFrom[0]] = 1;
+function getState() {
+// Coords gets you a coordinate array with boolean tuples of size 4 signifying the presence of entities in that cell
+// (index 0 is agent A, index 1 is agent B, index 2 is stag, index 3 is plant).
 
-function getBoardState() {
-	var state = [
-			[], // the board
-			[], // human trace
-			[], // computer trace
-			[], // stag trace
-			zeros([mapW, mapH]) // all Shrubs
-			];
-	
-	// game map
-	var board = gameMap.slice();
-	while(board.length) state[0].push(board.splice(0,mapW)); // reshape board
-
-	//human trace
-	for(var i=0; i<prev_state[1].length; i++) {
-		state[1].push(prev_state[1][i].map(x => Number((x * 0.9).toFixed(2))));
-	}
-	state[1][human_player.tileFrom[1]][human_player.tileFrom[0]] = 1;
-	//computer trace 
-	for(var i=0; i<prev_state[2].length; i++) {
-		state[2].push(prev_state[2][i].map(x => Number((x * 0.9).toFixed(2))));
-	}
-	state[2][computer_player.tileFrom[1]][computer_player.tileFrom[0]] = 1;
-
-	//stag trace
-	for(var i=0; i<prev_state[3].length; i++) {
-		state[3].push(prev_state[3][i].map(x => Number((x * 0.9).toFixed(2))));
-	}
-	state[3][stag.tileFrom[1]][stag.tileFrom[0]] = 1;
-
-	//allShrubs
+	var state = [computer_player.tileFrom, human_player.tileFrom, stag.tileFrom];
 	for(shrub of shrubs) {
-		state[4][shrub.tile[1]][shrub.tile[0]] = 1;
+		state.push(shrub.tile);
 	}
-	prev_state = state.slice();	
-	return state;
+	return state.flat();
 }
 
 var moved = false;
@@ -176,14 +139,15 @@ var handleKeyUp = function(e) {
 
 			if(validHumanAction) {
 				//blue player move
-				var state = getBoardState();
-				saveToFirebase(state, humanMove);
+				var state = getState();
 				computerMove = computer_controller.move(state);
 				computer_player.keysDown[computerMove] = true;
 
 				// the stag either moves towards the nearest agent (default) or takes a random move.
 				stagMove = stag_controller.move(state);
 				stag.keysDown[stagMove] = true;
+
+				saveToFirebase(state, humanMove, computerMove, stagMove);
 				steps_per_game--;
 			}
 		}

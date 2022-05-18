@@ -33,19 +33,19 @@ h1 { text-align: center;}
 }
 #left, #right {
   display: inline-block;
-  font-size: 14pt;
+  font-size: 15pt;
   margin-top: 1%;
   text-align: left;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: 4%;
+  margin-right: 4%;
 }
 #left {width: 40%; text-align: left;}
 #right {width: 40%;}
 
 #up, #down {
-  font-size: 14pt;
+  font-size: 15pt;
   text-align: left;
-  margin-bottom: 2%;
+  margin-top: 5%;
 }
 #up {height: 40%;}
 #down {height: 40%;}
