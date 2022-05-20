@@ -50,7 +50,7 @@ class Controller {
         else if(this.controlled.tileFrom[0] > to[0]) {
             return 37 //left
         }
-        return 32 //stay
+        return this.random() //takes random action
     }
 
     random() {

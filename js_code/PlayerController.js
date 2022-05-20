@@ -91,23 +91,14 @@ class PlayerController extends Controller{
         var shrubs_pos = [[state[7], state[6]], [state[9], state[8]], [state[11], state[10]]];
         var idx = 0;
         var min_dis = this.distance(shrubs_pos[0]);
-        console.log("temp: " + min_dis);
         for(var i=1; i<shrubs_pos.length; i++) {
             var temp = this.distance(shrubs_pos[i]);
-            console.log("temp: " + temp);
             if(min_dis > temp) {
                 min_dis = temp;
                 idx = i;
             }
         }
-        console.log("min_dis: " + min_dis);
-        console.log("idx: " + idx);
-        console.log("shrubs_pos: " + shrubs_pos);
-        console.log("shrubs_pos[idx]: "+ shrubs_pos[idx]);
-
-        var action = this.takeActionTo(shrubs_pos[idx]);
-        console.log("action: " + action);
-        return action;
+        return this.takeActionTo(shrubs_pos[idx]);
     }
 
     follow_stag(state) {

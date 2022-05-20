@@ -18,10 +18,10 @@ var mapW = 7, mapH = 7;
 var dimensions_objects = [60,60]
 
 var finishFlag = false;
-var steps_per_game = 30; // How many episodes (time steps) occur during a single game of Stag Hunt before entity positions are reset and the game is considered done.
+var steps_per_game = 80; // How many episodes (time steps) occur during a single game of Stag Hunt before entity positions are reset and the game is considered done.
 
 // reward function:
-const stag_reward = 5; // Reinforcement reward for when agents catch the stag by occupying the same cell as it at the same time. Expected to be positive.
+const stag_reward = 4; // Reinforcement reward for when agents catch the stag by occupying the same cell as it at the same time. Expected to be positive.
 const forage_reward = 1; //Reinforcement reward for harvesting a plant. Expected to be positive.
 const mauling_punishment = 0; //Reinforcement reward (or, rather, punishment) for getting mauled by a stag. Expected to be negative.
 
@@ -36,9 +36,9 @@ function place_position(tile, dimensions) {
 }
 
                     		// tileFrom, dimensions,       position,                              delayMove, icon
-var human_player = new Player([5,1], [5,1], dimensions_objects, place_position([5,1], dimensions_objects), 500, "red_agent.png");
+var human_player = new Player([1,1], [1,1], dimensions_objects, place_position([1,1], dimensions_objects), 500, "red_agent.png");
 initializeFirebase();
-var computer_player = new Player([1,1], [1,1], dimensions_objects, place_position([1,1], dimensions_objects), 500, "blue_agent.png");
+var computer_player = new Player([5,1], [5,1], dimensions_objects, place_position([5,1], dimensions_objects), 500, "blue_agent.png");
 var computer_controller = null;
 
 firebase.database().ref("chosen-controller").once('value',
@@ -169,7 +169,7 @@ window.onload = function()
 	requestAnimationFrame(drawGame);
 	ctx.font = "bold 10pt sans-serif";
 
-	// window.addEventListener("keyup", handleKeyUp);
+	window.addEventListener("keyup", handleKeyUp);
 };
 
 function logics()
@@ -311,12 +311,12 @@ function drawGame()
 	ctx.drawImage(stag.iconImage, stag.position[0] - borderWidth, stag.position[1] -borderWidth, stag.dimensions[0] + offset, stag.dimensions[1] + offset);
 
 	ctx.fillStyle = "#0000ff"; // title color: blue
-	ctx.fillText("Blue score: " + computer_player.score, 20, 25);
-    ctx.fillText("Blue action: " + computer_player.codeToAction[computerMove], 20, 50);
+	ctx.fillText("Blue score: " + computer_player.score, 360, 25);
+    ctx.fillText("Blue action: " + computer_player.codeToAction[computerMove], 360, 50);
 
 	ctx.fillStyle = "#ff0000"; // title color: red
-	ctx.fillText("Red score: " + human_player.score, 360, 25);
-	ctx.fillText("Red action: " + human_player.codeToAction[humanMove], 360, 50);
+	ctx.fillText("Red score: " + human_player.score, 20, 25);
+	ctx.fillText("Red action: " + human_player.codeToAction[humanMove], 20, 50);
 
 	ctx.fillStyle = "#ffffff"; // title color: red
 	ctx.fillText("Steps left: " + steps_per_game, 20, 450);
