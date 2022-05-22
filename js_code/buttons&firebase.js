@@ -134,7 +134,6 @@ function finishGame() { //update database
     // Get the survey
     getDOM("survey_title").innerHTML = "Well done!<br>Your score is: "+human_player.score + " point(s).\n"+ "<br>Please fill the following survey:";
     getDOM("survey").style.display = "block";
-    keyEnable = false;
 }
 
 function saveToFirebase(state_coords, humanMove, computerMove, stagMove) {

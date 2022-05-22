@@ -185,17 +185,6 @@ function logics()
 		frameCount = 1;
 	}
 	else { frameCount++; }
-	
-	// check finish the game
-	if(steps_per_game == 0 && !finishFlag) {
-		
-		console.log('1) Computer score: '+ computer_player.score);
-		console.log('2) Human score: '+ human_player.score);
-		window.removeEventListener("keyup", handleKeyUp);
-		
-		finishFlag = true;
-		finishGame();
-	}
 
 	//human move
 	if(!human_player.processMovement(currentFrameTime)) //move human player on board
@@ -204,7 +193,7 @@ function logics()
 		human_player.keysDown[humanMove] = false;
 
 		if(human_player.tileFrom[0] != human_player.tileTo[0] || human_player.tileFrom[1] != human_player.tileTo[1])
-		{ human_player.timeMoved = currentFrameTime; }
+		{ human_player.timeMoved = currentFrameTime;}
 	}
 	
 	//computer mvoe
@@ -272,6 +261,16 @@ function logics()
 	// 	}
 	// }
 
+	// check if the game finished
+	if(steps_per_game == 0 && !finishFlag && (currentFrameTime-human_player.timeMoved)>=human_player.delayMove) {
+				
+		console.log('1) Computer score: '+ computer_player.score);
+		console.log('2) Human score: '+ human_player.score);
+
+		finishFlag = true;
+		window.removeEventListener("keyup", handleKeyUp);
+		finishGame();
+	}
 	
 	lastFrameTime = currentFrameTime;
 }

@@ -37,31 +37,25 @@ http://technologies4.me//articles/recursive-backtracking-maze-javascript-a21/maz
   <div id="container">
     <div id="left">
       <h1><u>Game instructions:</u></h1>
-      <p>This ia a two player game. Both players moves synchronously; that is, each time you (the red player) make a move, the blue player will
+      <p>This ia a two player game. Both players move synchronously; that is, each time you (the red player) make a move, the blue player will
         make a move as well---at the same time.</p>
-      <p>The goal is to collect many points as posible.</p>
+      <p>The goal is to collect as many points as possible.</p>
       <p>The game continues for 80 steps.</p>
       <p>The game ends when the counter reaches 0.</p>
 
       <h3><u>Control:</u></h3>
       <ul>
         <li>In this game you control the red player.</li>
-        <li>Use the arrow keys to move left, up, right and down. It is ok to be in the same place as the second palyer.</li>
+        <li>Use the arrow keys to move left, up, right and down. You cannot remain in place. It is ok to be in the same place as the second player.</li>
         <li>In order to pick berries from the bush (1 point), simply travel to it. </li>
-        <li>In order to capture the stag, both players must be on it at the same time (5 points).</li>
-        <li>Any time a bush is picked or a stag is captured, a new one appears in a random location.</li>
+        <li>In order to capture the stag, both players must be on it at the same time (3 points).</li>
+        <li>Any time a bush is picked or a stag is captured, a new one appears at a random location.</li>
         
       </ul>
       <h3><u>Score:</u></h3>
       <ul>
-        <li>The score will be calculated using the following:
-          <ul>
-            <li>A move does not costs any points.</li>
-            <li>Pick berries from the bush earns you one point.</li>
-            <li>Once both players campture the stag both players will receive 5 points.</li>
-            <li>Note that the blue player uses the same scoring schedule as you do.</li>
-          </ul>
-        </li>
+		<li>Picking berries from the bush gives 1 point.</li>
+		<li>Once both players capture the stag together, both players will receive 3 points.</li>
       </ul>
       
       <p id=goodluck><i>Good luck!</i></p>
@@ -84,33 +78,33 @@ http://technologies4.me//articles/recursive-backtracking-maze-javascript-a21/maz
                 <div>
         
                   <div class="quiz_question">
-                    <p><b>1. Do actions encure costs?</b></p>
+                    <p><b>1. Can you capture the stag?</b></p>
                     <input type="radio" id="3_1" name="q3" value="false"/>
-                    <label for="3_1">Yes, moving costs 5 points and remaining in place costs 1 point.</label><br>
+                    <label for="3_1">No, It is not possible to capture the stag.</label><br>
                     <input type="radio" id="3_2" name="q3" value="false"/>
-                    <label for="3_2">Yes, moving costs 1 points and remaining in place costs 5 point.</label><br>
+                    <label for="3_2">Yes, I can capture the stag by moving to it even if the second player isn't on it.</label><br>
                     <input type="radio" id="3_3" name="q3" value="true"/>
-                    <label for="3_3">No, actions do not incur costs.</label>
+                    <label for="3_3">Yes, but both players are required to be on the stag in order to capture it.</label>
                   </div>
 
                   <div class="quiz_question">
-                    <p><b>2. How can you remain in place?</b></p>
-                    <input type="radio" id="1_1" name="q1" value="true"/>
-                    <label for="1_1">It is not posible to remain in place.</label><br>
-                    <input type="radio" id="1_2" name="q1" value="false"/>
-                    <label for="1_2">By pressing the enter key.</label><br>
+                    <p><b>2. Can you pick berries?</b></p>
+                    <input type="radio" id="1_1" name="q1" value="false"/>
+                    <label for="1_1">No, It is not possible to pick berries.</label><br>
+                    <input type="radio" id="1_2" name="q1" value="true"/>
+                    <label for="1_2">Yes, I can pick berries by moving to the bush even if the second player isn't on it.</label><br>
                     <input type="radio" id="1_3" name="q1" value="false"/>
-                    <label for="1_3">By pressing the space-bar.</label>
+                    <label for="1_3">Yes, but both players are required to be on the bush in order to pick berries.</label>
                   </div>
 
                   <div class="quiz_question">
-                    <p><b>3. How does the game end?</b></p>
-                    <input type="radio" id="2_1" name="q2" value="false"/>
-                    <label for="2_1">When the stag catch me.</label><br>
+                    <p><b>3. How many points do capturing a stag and picking berries provide?</b></p>
+                    <input type="radio" id="2_1" name="q2" value="true"/>
+                    <label for="2_1">Capturing a stag provides 3 points to each player, and picking berries 1 point.</label><br>
                     <input type="radio" id="2_2" name="q2" value="true"/>
-                    <label for="2_2">When the step counter get to zero.</label><br>
+                    <label for="2_2">Capturing a stag provides less points than picking berries.</label><br>
                     <input type="radio" id="2_3" name="q2" value="false"/>
-                    <label for="2_3">When the two players collide.</label>
+                    <label for="2_3">These actions do not provide any points.</label>
                   </div>
                   
                 </div>
@@ -122,7 +116,7 @@ http://technologies4.me//articles/recursive-backtracking-maze-javascript-a21/maz
               </form>
             </div>
             <div class="survey-footer">
-              <h3>After answering all questions correctly you will be able to play the game.</h3>
+              <h3>After answering all questions correctly, you will be able to play the game.</h3>
             </div>
           </div>
         </div>
