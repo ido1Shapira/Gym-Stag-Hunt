@@ -18,7 +18,7 @@ var mapW = 7, mapH = 7;
 var dimensions_objects = [60,60]
 
 var finishFlag = false;
-var steps_per_game = 80; // How many episodes (time steps) occur during a single game of Stag Hunt before entity positions are reset and the game is considered done.
+var steps_per_game = 60; // How many episodes (time steps) occur during a single game of Stag Hunt before entity positions are reset and the game is considered done.
 
 // reward function:
 const stag_reward = 3; // Reinforcement reward for when agents catch the stag by occupying the same cell as it at the same time. Expected to be positive.
