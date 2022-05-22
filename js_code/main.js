@@ -21,7 +21,7 @@ var finishFlag = false;
 var steps_per_game = 80; // How many episodes (time steps) occur during a single game of Stag Hunt before entity positions are reset and the game is considered done.
 
 // reward function:
-const stag_reward = 4; // Reinforcement reward for when agents catch the stag by occupying the same cell as it at the same time. Expected to be positive.
+const stag_reward = 3; // Reinforcement reward for when agents catch the stag by occupying the same cell as it at the same time. Expected to be positive.
 const forage_reward = 1; //Reinforcement reward for harvesting a plant. Expected to be positive.
 const mauling_punishment = 0; //Reinforcement reward (or, rather, punishment) for getting mauled by a stag. Expected to be negative.
 
@@ -169,7 +169,7 @@ window.onload = function()
 	requestAnimationFrame(drawGame);
 	ctx.font = "bold 10pt sans-serif";
 
-	window.addEventListener("keyup", handleKeyUp);
+	// window.addEventListener("keyup", handleKeyUp);
 };
 
 function logics()

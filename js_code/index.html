@@ -40,23 +40,24 @@ http://technologies4.me//articles/recursive-backtracking-maze-javascript-a21/maz
       <p>This ia a two player game. Both players moves synchronously; that is, each time you (the red player) make a move, the blue player will
         make a move as well---at the same time.</p>
       <p>The goal is to collect many points as posible.</p>
+      <p>The game continues for 80 steps.</p>
+      <p>The game ends when the counter reaches 0.</p>
 
       <h3><u>Control:</u></h3>
       <ul>
         <li>In this game you control the red player.</li>
         <li>Use the arrow keys to move left, up, right and down. It is ok to be in the same place as the second palyer.</li>
-        <li>In order to pick fruit from the bush (1 point), simply travel to it. </li>
-        <li>In order to capture the stag, both agents must be on it at the same time (5 points).</li>
-        <li>Any time a bush is harvested or a stag is captured, a new one appears in a random location.</li>
+        <li>In order to pick berries from the bush (1 point), simply travel to it. </li>
+        <li>In order to capture the stag, both players must be on it at the same time (5 points).</li>
+        <li>Any time a bush is picked or a stag is captured, a new one appears in a random location.</li>
         
       </ul>
       <h3><u>Score:</u></h3>
       <ul>
-        <li>Your score may become negative; it will not affect the game-play.</li>
         <li>The score will be calculated using the following:
           <ul>
             <li>A move does not costs any points.</li>
-            <li>Pick fruit from the bush earns you one point.</li>
+            <li>Pick berries from the bush earns you one point.</li>
             <li>Once both players campture the stag both players will receive 5 points.</li>
             <li>Note that the blue player uses the same scoring schedule as you do.</li>
           </ul>
