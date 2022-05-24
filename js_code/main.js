@@ -44,9 +44,7 @@ var computer_controller = null;
 firebase.database().ref("chosen-controller").once('value',
 (snap) => {
 	selectedBehavior = snap.val();
-	// console.log('selectedBehavior: ' + selectedBehavior);	
 	computer_controller = new PlayerController(computer_player, selectedBehavior);
-
 	var type = computer_controller.getType();
 	// Generate a reference to a new location and add some data using push()
 	var newPostRef = firebase.database().ref("all-games").push({
