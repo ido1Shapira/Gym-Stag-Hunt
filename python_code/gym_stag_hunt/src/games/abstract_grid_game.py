@@ -1,13 +1,14 @@
 from abc import ABC
+from re import S
 
 from numpy import zeros, uint8, array
 from numpy.random import choice
 
 # Possible Moves
 LEFT = 0
-DOWN = 1
+DOWN = 3
 RIGHT = 2
-UP = 3
+UP = 1
 STAND = 4
 
 
@@ -102,13 +103,13 @@ class AbstractGridGame(ABC):
         Place agents in the top left and top right corners.
         :return:
         """
-        self.A_AGENT, self.B_AGENT = [0, 0], [self.GRID_W - 1, 0]
+        self.B_AGENT, self.A_AGENT = [0, 0], [self.GRID_W - 1, 0]
 
     def _random_move(self, pos):
         """
         :return: a random direction
         """
-        options = [LEFT, RIGHT, UP, DOWN]
+        options = [LEFT, RIGHT, UP, DOWN, STAND]
         if pos[0] == 0:
             options.remove(LEFT)
         elif pos[0] == self.GRID_W - 1:

@@ -1,19 +1,80 @@
-import matplotlib.pyplot as plt
-
 import gym
 import gym_stag_hunt
+
+import numpy as np
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+import random
 import time
 
-env = gym.make("StagHunt-Hunt-v0", obs_type='image', enable_multiagent=True, grid_size=(5,5)) # you can pass config parameters here
+import tensorflow as tf
 
+# Possible Moves
+from gym_stag_hunt.src.games.abstract_grid_game import UP, LEFT, DOWN, RIGHT, STAND
+
+
+env = gym.make("StagHunt-Hunt-v0", obs_type='coords', load_renderer= True, enable_multiagent=True, forage_quantity=3) # you can pass config parameters here
+# replace the computer initial position with the human position
+
+class HumamModel:
+  def __init__(self, grid_size=(5,5)):
+    self.model = tf.keras.models.load_model('./data/humanModel/model_v0.h5')
+    self.grid_size = grid_size
+
+  def valid_action(self, position, action):
+    if action == LEFT:
+      return position[0] > 0
+    elif action == UP:
+      return position[1] > 0
+    elif action == RIGHT:
+      return position[0] < (self.grid_size[1]-1)
+    elif action == DOWN:
+      return position[1] < (self.grid_size[0]-1)
+    return False
+  
+  def getValidActions(self, position):
+    actions = [UP, LEFT, DOWN, RIGHT]
+    valid_actions = []
+    for a in actions:
+      if self.valid_action(position, a):
+        valid_actions.append(a)
+          
+    return valid_actions
+
+  def randomAction(self, state):
+    position = (state[0], state[1])
+    valid_actions = self.getValidActions(position)
+    randomAction = random.choices(valid_actions)[0]
+    return randomAction
+
+  def predict_action(self, state):
+    state = tf.expand_dims(state, 0)  # Create a batch
+    score = self.model.predict(state)[0]
+    # action = round(random.random() * self.action_size)
+
+    #fix numeric problem that softmax not always sum to 1
+    diff = 1 - sum(score)
+    score = score + diff/len(score)
+    dict_scores = dict(enumerate(score))
+    action = random.choices(list(dict_scores.keys()), weights=list(dict_scores.values()))[0]
+    while(not self.valid_action((state[0][1], state[0][1]), action)):
+        del dict_scores[action]
+        action = random.choices(list(dict_scores.keys()), weights=list(dict_scores.values()))[0]
+
+    return action
+
+human_model = HumamModel()
 episodes = 5
 for ep in range(episodes):    
-  env.reset()
-  episodes_per_game = 50
+  obs = env.reset()
+  episodes_per_game = 60
   for iteration in range(episodes_per_game):
-    time.sleep(.2)
-    obs, rewards, done, info = env.step([env.action_space.sample(), env.action_space.sample()])
-    env.render()
+    # env.render()
+    computer_action = human_model.randomAction(obs)
+    human_action = human_model.predict_action(obs)
+    obs, rewards, done, info = env.step([computer_action, human_action])
+    obs = obs[0]
     time.sleep(0.5)
     print("info: " ,ep, iteration, rewards, done, info)
 env.close()

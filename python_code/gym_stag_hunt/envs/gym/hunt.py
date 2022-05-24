@@ -17,10 +17,10 @@ class HuntEnv(AbstractMarkovStagHuntEnv):
         load_renderer=False,
         stag_follows=True,
         run_away_after_maul=False,
-        forage_quantity=2,
-        stag_reward=5,
+        forage_quantity=3,
+        stag_reward=3,
         forage_reward=1,
-        mauling_punishment=-5,
+        mauling_punishment=0,
     ):
         """
         :param grid_size: A (W, H) tuple corresponding to the grid dimensions. Although W=H is expected, W!=H works also
@@ -34,10 +34,11 @@ class HuntEnv(AbstractMarkovStagHuntEnv):
         :param mauling_punishment: How much reinforcement the agents get for trying to catch a stag alone (MUST be neg.)
         """
         if not (stag_reward > forage_reward >= 0 > mauling_punishment):
-            raise AttributeError(
-                "The game does not qualify as a Stag Hunt, please change parameters so that "
-                "stag_reward > forage_reward >= 0 > mauling_punishment"
-            )
+            # raise AttributeError(
+            #     "The game does not qualify as a Stag Hunt, please change parameters so that "
+            #     "stag_reward > forage_reward >= 0 > mauling_punishment"
+            # )
+            print("The game does not qualify as a Stag Hunt, please change parameters so that stag_reward > forage_reward >= 0 > mauling_punishment")
         if mauling_punishment == forage_reward:
             raise AttributeError(
                 "Mauling punishment and forage reward are equal."
