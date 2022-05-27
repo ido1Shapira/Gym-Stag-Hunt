@@ -1,20 +1,11 @@
 class PlayerController extends Controller{
     TYPES = {
         "random": false,
-        // "selfish": false,
-        // "farthest": false,
-        // "closest": false,
-        // "TSP": false,
-        // // "mix": false
+        "follow_stag": false,
+        "closest": false,
 
         // "ddqn": false,
         // "sarl ddqn": false,
-
-        // "ppo": false,
-        // "sarl ppo": false,
-
-        // "ddqn distribution": false,
-        // "sarl ddqn distribution": false
     }
 
     toAction = {
@@ -25,44 +16,29 @@ class PlayerController extends Controller{
     }
 
     constructor(player, type) {
-        //5 kinds of type:
+        // 3 kinds of type:
         // 1. random - Moves randomly
-        // 2. selfish - stay in place
-        // 3. farthest - Moves to the farthest award that its still closer than the other agent
-        // 4. closest - Go to the closest award
-        // 5. TSP - Moves by the solution of the TSP problem
-        // 6. mix of all controllers
-        
-        // if(type == -1) {
-        //     var all = Object.keys(this.TYPES);
-        //     type = all[Math.floor(all.length * Math.random())];
-        // }
-        // if(type == -2) {
-        //     var baselines = Object.keys(this.TYPES).slice(0,5);
-        //     type = baselines[Math.floor(baselines.length * Math.random())];
-        // }
+        // 2. closest - Go to the closest shrub
+        // 3. follow_stag - Follow the stag at each move
+        super(player)
+
+        if(type == -1) {
+            var all = Object.keys(this.TYPES);
+            type = all[Math.floor(all.length * Math.random())];
+        }
+        if(type == -2) {
+            var baselines = Object.keys(this.TYPES).slice(0,3);
+            type = baselines[Math.floor(baselines.length * Math.random())];
+        }
         // if(type == -3) {
-        //     var ddqns = Object.keys(this.TYPES).slice(5,7);
+        //     var ddqns = Object.keys(this.TYPES).slice(3,5);
         //     type = ddqns[Math.floor(ddqns.length * Math.random())];
         // }
-        // if(type == -4) {
-        //     var ppos = Object.keys(this.TYPES).slice(7, 9);
-        //     type = ppos[Math.floor(ppos.length * Math.random())];
-        // }
-        // if(type == -5) {
-        //     var distribution = Object.keys(this.TYPES).slice(9,11);
-        //     type = distribution[Math.floor(distribution.length * Math.random())];
-        // }
-        // if(type == -6) {
-        //     var special = ['closest', 'random', 'farthest'];
-        //     type = special[Math.floor(special.length * Math.random())];
-        // }
-
-        super(player)
+    
         this.TYPES[type] = true;
         this.type = type;
 
-        // this.loadAgent();
+        this.loadAgent();
     }
     
     getType() { return this.type; }
@@ -77,8 +53,6 @@ class PlayerController extends Controller{
                 return this.closest(state);
 
             // case "ddqn": case "sarl ddqn":
-            // case "ppo": case "sarl ppo":
-            // case "ddqn distribution": case "sarl ddqn distribution":
             //     return this.predict(state);
             default:
                 throw "move(state): not a valid baseline"
@@ -117,21 +91,6 @@ class PlayerController extends Controller{
             case "sarl ddqn":
                 path += 'SARL_ddqn_agent_0.4';
                 break;
-            
-            case "ddqn distribution":
-                path += 'ddqn_agent_distribution';
-                break;
-
-            case "sarl ddqn distribution":
-                path += 'SARL_ddqn_agent_0.615_distribution';
-                break;
-
-            case "ppo":
-                // path += "ppo_actor_agent";
-                // break;
-                throw "file not found! at sarl ppo";
-            case "sarl ppo":
-                throw "file not found! at sarl ppo";
             
             default:
                 deepRL = false;
