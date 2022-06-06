@@ -1,6 +1,7 @@
+from random import random
 from numpy import zeros, uint8, array, hypot
 
-from gym_stag_hunt.src.games.abstract_grid_game import AbstractGridGame
+from gym_stag_hunt.src.games.abstract_grid_game import STAND, AbstractGridGame
 
 from gym_stag_hunt.src.utils import (
     overlaps_entity,
@@ -55,13 +56,13 @@ class StagHunt(AbstractGridGame):
         self._run_away_after_maul = run_away_after_maul
         self._opponent_policy = opponent_policy
 
-        # Reinforcement Variables
+        # Reinforcement ables
         self._stag_reward = stag_reward  # record RL values as attributes
         self._forage_quantity = forage_quantity
         self._forage_reward = forage_reward
         self._mauling_punishment = mauling_punishment
 
-        # State Variables
+        # State ables
         self._tagged_plants = []  # harvested plants that need to be re-spawned
 
         # Entity Positions
@@ -247,7 +248,8 @@ class StagHunt(AbstractGridGame):
         Moves the stag towards the nearest agent.
         :return:
         """
-        if self._stag_follows:
+        coin = random()
+        if coin < 1/3:
             stag, agents = self.STAG, self.AGENTS
             a_dist = hypot(
                 int(agents[0][0]) - int(stag[0]), int(agents[0][1]) - int(stag[1])
@@ -262,8 +264,33 @@ class StagHunt(AbstractGridGame):
                 agent_to_seek = "b"
 
             self.STAG = self._seek_agent(agent_to_seek)
+        elif (coin > 1/3 and coin < 1/3 + 0.254):
+            # 0.254 + 0.0825 ~ 0.33
+            return # stay
+        
         else:
+            # 5 actions (0.2 for an action)
+            # 1 - 1/3 - 0.254 = 619/1500
+            # 619/1500 * 0.2 = 0.0825
             self.STAG = self._move_entity(self.STAG, self._random_move(self.STAG))
+        
+        # if self._stag_follows:
+        #     stag, agents = self.STAG, self.AGENTS
+        #     a_dist = hypot(
+        #         int(agents[0][0]) - int(stag[0]), int(agents[0][1]) - int(stag[1])
+        #     )
+        #     b_dist = hypot(
+        #         int(agents[1][0]) - int(stag[0]), int(agents[1][1]) - int(stag[1])
+        #     )
+
+        #     if a_dist < b_dist:
+        #         agent_to_seek = "a"
+        #     else:
+        #         agent_to_seek = "b"
+
+        #     self.STAG = self._seek_agent(agent_to_seek)
+        # else:
+        #     self.STAG = self._move_entity(self.STAG, self._random_move(self.STAG))
 
     def reset_entities(self):
         """

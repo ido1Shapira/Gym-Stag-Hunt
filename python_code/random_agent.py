@@ -22,6 +22,36 @@ class HumamModel:
     self.model = tf.keras.models.load_model('./data/humanModel/model_v0.h5')
     self.grid_size = grid_size
 
+  def vec2mat(self, row):
+      r = np.ones(self.grid_size)
+      g = np.ones(self.grid_size)
+      b = np.ones(self.grid_size)
+
+      # computer pos
+      pos = (row[1], row[0])
+      r[pos] = 0
+      g[pos] = 0
+
+      # human pos
+      pos = (row[3], row[2])
+      b[pos] = 0
+      g[pos] = 0
+
+      # stag pos
+      pos = (row[5], row[4])
+      r[pos] = 0.8039
+      g[pos] = 0.498
+      b[pos] = 0.1961
+
+      # plants pos
+      for i in range(6, 12, 2):
+          pos = (row[i+1], row[i])
+          r[pos] = 0
+          b[pos] = 0
+
+      map = np.dstack((r,g,b))
+      return map
+      
   def valid_action(self, position, action):
     if action == LEFT:
       return position[0] > 0
@@ -61,7 +91,7 @@ class HumamModel:
     while(not self.valid_action((state[0][1], state[0][1]), action)):
         del dict_scores[action]
         action = random.choices(list(dict_scores.keys()), weights=list(dict_scores.values()))[0]
-
+    print(action)
     return action
 
 human_model = HumamModel()
@@ -70,7 +100,7 @@ for ep in range(episodes):
   obs = env.reset()
   episodes_per_game = 60
   for iteration in range(episodes_per_game):
-    # env.render()
+    env.render()
     computer_action = human_model.randomAction(obs)
     human_action = human_model.predict_action(obs)
     obs, rewards, done, info = env.step([computer_action, human_action])
