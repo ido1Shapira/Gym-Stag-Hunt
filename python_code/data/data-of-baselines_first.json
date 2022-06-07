@@ -1,0 +1,6735 @@
+{
+  "all-games": {
+    "-N2gggxHqhYLaWRE721n": {
+      "behavior": "follow_stag"
+    },
+    "-N2gkzwCD88O583Ep4DB": {
+      "behavior": "follow_stag"
+    },
+    "-N2gl9wHXMJoXRg5OyiP": {
+      "additional_comments": "",
+      "behavior": "follow_stag",
+      "birth_year": "1980",
+      "collaborative_value": "4",
+      "computer_score": "31.000",
+      "computer_value": "7",
+      "education": "BA",
+      "gender": "male",
+      "human_score": "36.000",
+      "predictable_value": "6",
+      "selfishly_value": "1",
+      "wisely_value": "4"
+    },
+    "-N2gnbwu9gs6PgpScg-B": {
+      "additional_comments": "",
+      "behavior": "follow_stag",
+      "birth_year": "1994",
+      "collaborative_value": "7",
+      "computer_score": "19.000",
+      "computer_value": "7",
+      "education": "BA",
+      "gender": "female",
+      "human_score": "36.000",
+      "predictable_value": "4",
+      "selfishly_value": "1",
+      "wisely_value": "4"
+    },
+    "-N2go9oI810XlH5aM5rn": {
+      "behavior": "follow_stag"
+    },
+    "-N2gpqCiV6iClR2iJfDD": {
+      "additional_comments": "good",
+      "behavior": "follow_stag",
+      "birth_year": "1975",
+      "collaborative_value": "5",
+      "computer_score": "8.000",
+      "computer_value": "4",
+      "education": "Master's degree",
+      "gender": "male",
+      "human_score": "13.000",
+      "predictable_value": "6",
+      "selfishly_value": "4",
+      "wisely_value": "5"
+    },
+    "-N2gzRD6MoUAWRj3PaOV": {
+      "additional_comments": "no",
+      "behavior": "follow_stag",
+      "birth_year": "1988",
+      "collaborative_value": "5",
+      "computer_score": "7.000",
+      "computer_value": "1",
+      "education": "BA",
+      "gender": "male",
+      "human_score": "8.000",
+      "predictable_value": "6",
+      "selfishly_value": "6",
+      "wisely_value": "5"
+    },
+    "-N2h6FFFrGGqFAUIRi6W": {
+      "additional_comments": "good",
+      "behavior": "follow_stag",
+      "birth_year": "1988",
+      "collaborative_value": "6",
+      "computer_score": "0.000",
+      "computer_value": "6",
+      "education": "BA",
+      "gender": "female",
+      "human_score": "6.000",
+      "predictable_value": "6",
+      "selfishly_value": "6",
+      "wisely_value": "6"
+    }
+  },
+  "chosen-controller": "follow_stag",
+  "humanModel": {
+    "-N2gl9wHXMJoXRg5OyiP": [
+      null,
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          0,
+          4,
+          0,
+          0,
+          2,
+          2,
+          4,
+          1,
+          0,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          1,
+          4,
+          1,
+          0,
+          2,
+          3,
+          4,
+          1,
+          0,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          4,
+          1,
+          1,
+          1,
+          3,
+          4,
+          1,
+          0,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          4,
+          2,
+          1,
+          1,
+          4,
+          4,
+          1,
+          0,
+          3,
+          2,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          0,
+          4,
+          2,
+          2,
+          1,
+          4,
+          4,
+          1,
+          0,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          4,
+          2,
+          3,
+          0,
+          4,
+          4,
+          1,
+          0,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          4,
+          1,
+          3,
+          1,
+          4,
+          4,
+          1,
+          0,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          4,
+          1,
+          4,
+          3,
+          2,
+          4,
+          1,
+          0,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          4,
+          1,
+          3,
+          3,
+          2,
+          4,
+          1,
+          0,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          3,
+          4,
+          1,
+          2,
+          3,
+          2,
+          4,
+          1,
+          0,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 39,
+        "stateCoords": [
+          3,
+          3,
+          3,
+          3,
+          0,
+          1,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          3,
+          3,
+          2,
+          0,
+          2,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          3,
+          3,
+          1,
+          1,
+          2,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          2,
+          2,
+          1,
+          2,
+          2,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          2,
+          2,
+          2,
+          3,
+          2,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          2,
+          3,
+          2,
+          2,
+          2,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          2,
+          2,
+          2,
+          3,
+          2,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          3,
+          2,
+          3,
+          2,
+          4,
+          2,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          2,
+          4,
+          2,
+          4,
+          3,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 39,
+        "stateCoords": [
+          4,
+          3,
+          4,
+          3,
+          4,
+          2,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          2,
+          4,
+          2,
+          4,
+          3,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          3,
+          4,
+          3,
+          4,
+          2,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          4,
+          2,
+          4,
+          2,
+          1,
+          1,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          3,
+          2,
+          3,
+          2,
+          2,
+          1,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          2,
+          3,
+          1,
+          3,
+          1,
+          4,
+          1,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          3,
+          2,
+          4,
+          1,
+          3,
+          1,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          1,
+          3,
+          1,
+          4,
+          1,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          1,
+          4,
+          1,
+          3,
+          1,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          1,
+          3,
+          1,
+          4,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 38,
+        "stateCoords": [
+          4,
+          1,
+          4,
+          1,
+          3,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          1,
+          3,
+          1,
+          2,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          1,
+          3,
+          2,
+          2,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          2,
+          2,
+          2,
+          3,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          2,
+          3,
+          2,
+          4,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          4,
+          2,
+          4,
+          2,
+          3,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          2,
+          3,
+          2,
+          4,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          2,
+          3,
+          1,
+          4,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          3,
+          4,
+          1,
+          4,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 38,
+        "stateCoords": [
+          4,
+          2,
+          4,
+          2,
+          2,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          3,
+          2,
+          3,
+          2,
+          1,
+          2,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          4,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          4,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          3,
+          1,
+          3,
+          0,
+          4,
+          0,
+          2,
+          0,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          0,
+          3,
+          0,
+          3,
+          0,
+          4,
+          0,
+          2,
+          1,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 39,
+        "stateCoords": [
+          0,
+          4,
+          0,
+          4,
+          0,
+          3,
+          0,
+          2,
+          1,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          3,
+          0,
+          3,
+          0,
+          4,
+          0,
+          2,
+          1,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          0,
+          4,
+          1,
+          3,
+          0,
+          4,
+          0,
+          2,
+          1,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          4,
+          1,
+          4,
+          0,
+          3,
+          0,
+          2,
+          1,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          4,
+          1,
+          3,
+          0,
+          3,
+          0,
+          2,
+          1,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          0,
+          3,
+          0,
+          3,
+          1,
+          3,
+          0,
+          2,
+          1,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          3,
+          1,
+          3,
+          0,
+          3,
+          0,
+          2,
+          1,
+          2,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          0,
+          3,
+          1,
+          2,
+          1,
+          3,
+          0,
+          2,
+          4,
+          1,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          3,
+          1,
+          3,
+          1,
+          2,
+          0,
+          2,
+          4,
+          1,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          3,
+          0,
+          2,
+          4,
+          1,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          3,
+          0,
+          2,
+          1,
+          3,
+          2,
+          3,
+          4,
+          1,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          4,
+          0,
+          3,
+          1,
+          3,
+          2,
+          3,
+          4,
+          1,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          3,
+          1,
+          3,
+          0,
+          1,
+          2,
+          3,
+          4,
+          1,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 39,
+        "stateCoords": [
+          0,
+          3,
+          1,
+          2,
+          1,
+          1,
+          2,
+          3,
+          4,
+          1,
+          4,
+          4
+        ]
+      }
+    ],
+    "-N2gnbwu9gs6PgpScg-B": [
+      null,
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          4,
+          0,
+          0,
+          2,
+          2,
+          2,
+          4,
+          1,
+          0,
+          2,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          1,
+          4,
+          1,
+          0,
+          2,
+          2,
+          2,
+          4,
+          4,
+          3,
+          2,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          4,
+          2,
+          0,
+          1,
+          2,
+          3,
+          1,
+          4,
+          3,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          4,
+          3,
+          0,
+          2,
+          2,
+          3,
+          1,
+          4,
+          3,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          4,
+          3,
+          1,
+          2,
+          2,
+          1,
+          4,
+          4,
+          3,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          3,
+          4,
+          1,
+          3,
+          2,
+          1,
+          4,
+          4,
+          3,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          3,
+          3,
+          4,
+          2,
+          2,
+          2,
+          1,
+          4,
+          4,
+          3,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          3,
+          4,
+          3,
+          3,
+          2,
+          1,
+          4,
+          0,
+          1,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          3,
+          4,
+          4,
+          4,
+          2,
+          1,
+          4,
+          0,
+          1,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          4,
+          3,
+          3,
+          4,
+          4,
+          2,
+          1,
+          4,
+          0,
+          1,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          2,
+          2,
+          4,
+          4,
+          3,
+          1,
+          4,
+          0,
+          1,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 39,
+        "stateCoords": [
+          4,
+          3,
+          1,
+          4,
+          4,
+          3,
+          3,
+          0,
+          0,
+          1,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          3,
+          1,
+          3,
+          4,
+          4,
+          3,
+          0,
+          0,
+          1,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          3,
+          0,
+          3,
+          4,
+          4,
+          3,
+          0,
+          0,
+          1,
+          0,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 38,
+        "stateCoords": [
+          4,
+          4,
+          0,
+          2,
+          4,
+          4,
+          3,
+          0,
+          0,
+          1,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 40,
+        "stateCoords": [
+          4,
+          3,
+          0,
+          1,
+          3,
+          4,
+          3,
+          0,
+          1,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          3,
+          1,
+          1,
+          4,
+          4,
+          3,
+          0,
+          1,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          4,
+          3,
+          1,
+          2,
+          3,
+          4,
+          3,
+          0,
+          1,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          3,
+          1,
+          1,
+          4,
+          4,
+          3,
+          0,
+          1,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          3,
+          1,
+          0,
+          3,
+          4,
+          3,
+          0,
+          1,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          3,
+          3,
+          2,
+          0,
+          3,
+          4,
+          3,
+          0,
+          1,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          3,
+          4,
+          3,
+          0,
+          3,
+          3,
+          2,
+          2,
+          1,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          3,
+          4,
+          0,
+          3,
+          4,
+          2,
+          2,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          4,
+          3,
+          0,
+          3,
+          4,
+          2,
+          2,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          4,
+          4,
+          2,
+          0,
+          3,
+          4,
+          2,
+          2,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          4,
+          2,
+          1,
+          4,
+          4,
+          2,
+          2,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          4,
+          2,
+          2,
+          4,
+          4,
+          2,
+          1,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          4,
+          2,
+          1,
+          4,
+          4,
+          3,
+          1,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 38,
+        "stateCoords": [
+          4,
+          4,
+          3,
+          1,
+          4,
+          4,
+          1,
+          1,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 37,
+        "stateCoords": [
+          3,
+          4,
+          2,
+          1,
+          3,
+          4,
+          1,
+          1,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          4,
+          1,
+          1,
+          3,
+          3,
+          2,
+          2,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          3,
+          4,
+          0,
+          1,
+          3,
+          3,
+          2,
+          2,
+          1,
+          4,
+          2,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          3,
+          1,
+          1,
+          3,
+          4,
+          2,
+          2,
+          1,
+          4,
+          2,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          4,
+          2,
+          1,
+          3,
+          4,
+          2,
+          2,
+          1,
+          4,
+          2,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          3,
+          3,
+          2,
+          2,
+          3,
+          4,
+          4,
+          0,
+          1,
+          4,
+          2,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          4,
+          2,
+          1,
+          4,
+          4,
+          4,
+          0,
+          1,
+          4,
+          2,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          4,
+          2,
+          0,
+          4,
+          4,
+          4,
+          0,
+          1,
+          4,
+          1,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          3,
+          1,
+          0,
+          4,
+          4,
+          4,
+          0,
+          1,
+          4,
+          1,
+          1
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          4,
+          1,
+          1,
+          4,
+          4,
+          4,
+          0,
+          1,
+          4,
+          2,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          3,
+          1,
+          0,
+          4,
+          4,
+          4,
+          0,
+          1,
+          4,
+          2,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          4,
+          4,
+          2,
+          0,
+          4,
+          3,
+          4,
+          0,
+          1,
+          4,
+          3,
+          3
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          3,
+          3,
+          0,
+          3,
+          3,
+          4,
+          0,
+          1,
+          4,
+          3,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          3,
+          4,
+          0,
+          3,
+          2,
+          2,
+          2,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          2,
+          3,
+          0,
+          2,
+          2,
+          2,
+          2,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          2,
+          2,
+          0,
+          1,
+          2,
+          3,
+          4,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          2,
+          2,
+          1,
+          0,
+          2,
+          3,
+          4,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 37,
+        "stateCoords": [
+          0,
+          2,
+          1,
+          1,
+          0,
+          3,
+          3,
+          4,
+          1,
+          4,
+          0,
+          1
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          3,
+          0,
+          1,
+          0,
+          2,
+          3,
+          4,
+          1,
+          4,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          2,
+          1,
+          1,
+          0,
+          2,
+          3,
+          4,
+          1,
+          4,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          2,
+          3,
+          4,
+          1,
+          4,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          0,
+          2,
+          0,
+          2,
+          2,
+          4,
+          3,
+          4,
+          1,
+          4,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          4,
+          3,
+          4,
+          1,
+          4,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2,
+          3,
+          4,
+          1,
+          4,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          4,
+          3,
+          4,
+          1,
+          4,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          4,
+          2,
+          4,
+          1,
+          0,
+          3,
+          4,
+          1,
+          4,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          4,
+          2,
+          3,
+          0,
+          0,
+          3,
+          4,
+          3,
+          1,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          0,
+          4,
+          2,
+          2,
+          1,
+          0,
+          3,
+          4,
+          3,
+          1,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          4,
+          2,
+          1,
+          2,
+          0,
+          3,
+          4,
+          3,
+          1,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          4,
+          3,
+          1,
+          2,
+          1,
+          3,
+          4,
+          0,
+          0,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          3,
+          2,
+          1,
+          2,
+          2,
+          3,
+          4,
+          0,
+          0,
+          4,
+          2
+        ]
+      }
+    ],
+    "-N2go9oI810XlH5aM5rn": [
+      null,
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          0,
+          4,
+          0,
+          0,
+          2,
+          2,
+          2,
+          1,
+          2,
+          3,
+          1,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          4,
+          0,
+          1,
+          1,
+          2,
+          2,
+          1,
+          2,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          2,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 38,
+        "stateCoords": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          0,
+          4,
+          2,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0,
+          4,
+          2,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          1,
+          0,
+          4,
+          2,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          0,
+          4,
+          2,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          2,
+          1,
+          4,
+          2,
+          1,
+          0,
+          4,
+          2,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          2,
+          2,
+          4,
+          2,
+          1,
+          0,
+          4,
+          2,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          1,
+          2,
+          3,
+          2,
+          1,
+          0,
+          4,
+          4,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          0,
+          3,
+          3,
+          2,
+          1,
+          0,
+          4,
+          4,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          1,
+          4,
+          3,
+          2,
+          2,
+          0,
+          4,
+          4,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          2,
+          3,
+          3,
+          1,
+          2,
+          0,
+          4,
+          4,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          2,
+          2,
+          3,
+          1,
+          2,
+          0,
+          4,
+          4,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          3,
+          3,
+          3,
+          1,
+          1,
+          0,
+          4,
+          4,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          2,
+          3,
+          4,
+          1,
+          1,
+          0,
+          4,
+          4,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          1,
+          4,
+          4,
+          1,
+          2,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          2,
+          3,
+          4,
+          1,
+          2,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          2,
+          4,
+          4,
+          1,
+          2,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          2,
+          3,
+          4,
+          2,
+          2,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          2,
+          2,
+          4,
+          2,
+          3,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          3,
+          3,
+          4,
+          2,
+          4,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          4,
+          2,
+          4,
+          3,
+          4,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 40,
+        "stateCoords": [
+          3,
+          4,
+          3,
+          4,
+          2,
+          4,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          4,
+          4,
+          4,
+          3,
+          4,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          4,
+          3,
+          4,
+          4,
+          4,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          4,
+          3,
+          4,
+          4,
+          4,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          4,
+          3,
+          4,
+          3,
+          4,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          4,
+          4,
+          4,
+          3,
+          3,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          3,
+          3,
+          3,
+          4,
+          3,
+          3,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          3,
+          4,
+          4,
+          3,
+          2,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          3,
+          3,
+          4,
+          3,
+          2,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          3,
+          2,
+          2,
+          4,
+          3,
+          2,
+          0,
+          4,
+          1,
+          4,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 40,
+        "stateCoords": [
+          4,
+          2,
+          1,
+          4,
+          3,
+          3,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          2,
+          2,
+          4,
+          4,
+          3,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          4,
+          2,
+          3,
+          4,
+          3,
+          3,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          3,
+          2,
+          4,
+          4,
+          3,
+          4,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          3,
+          4,
+          4,
+          4,
+          4,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          4,
+          4,
+          3,
+          4,
+          4,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          4,
+          4,
+          4,
+          4,
+          3,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          4,
+          4,
+          3,
+          4,
+          3,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          3,
+          4,
+          2,
+          4,
+          2,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          2,
+          4,
+          1,
+          4,
+          2,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          2,
+          4,
+          0,
+          4,
+          2,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          3,
+          2,
+          4,
+          0,
+          4,
+          2,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          2,
+          2,
+          0,
+          4,
+          3,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          2,
+          2,
+          0,
+          4,
+          3,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          3,
+          2,
+          0,
+          4,
+          3,
+          0,
+          4,
+          0,
+          3,
+          3,
+          0
+        ]
+      }
+    ],
+    "-N2gpqCiV6iClR2iJfDD": [
+      null,
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          4,
+          0,
+          0,
+          2,
+          2,
+          4,
+          1,
+          4,
+          2,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          4,
+          0,
+          1,
+          2,
+          2,
+          4,
+          1,
+          4,
+          2,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          4,
+          0,
+          0,
+          2,
+          2,
+          4,
+          1,
+          4,
+          2,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          3,
+          1,
+          0,
+          2,
+          3,
+          4,
+          1,
+          4,
+          2,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          3,
+          2,
+          0,
+          2,
+          3,
+          4,
+          1,
+          4,
+          2,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          3,
+          3,
+          0,
+          2,
+          3,
+          4,
+          1,
+          4,
+          2,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          4,
+          4,
+          0,
+          2,
+          3,
+          4,
+          1,
+          4,
+          2,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          3,
+          4,
+          1,
+          2,
+          4,
+          1,
+          2,
+          4,
+          2,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          4,
+          4,
+          2,
+          2,
+          3,
+          1,
+          2,
+          1,
+          1,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          3,
+          4,
+          3,
+          2,
+          4,
+          1,
+          2,
+          1,
+          1,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          4,
+          3,
+          3,
+          3,
+          4,
+          1,
+          2,
+          1,
+          1,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          4,
+          3,
+          4,
+          1,
+          4,
+          1,
+          2,
+          1,
+          1,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          4,
+          2,
+          4,
+          1,
+          4,
+          1,
+          2,
+          1,
+          1,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          4,
+          1,
+          4,
+          2,
+          4,
+          1,
+          2,
+          1,
+          1,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          4,
+          2,
+          4,
+          3,
+          4,
+          1,
+          2,
+          1,
+          1,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          4,
+          3,
+          4,
+          2,
+          4,
+          1,
+          2,
+          1,
+          1,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          4,
+          3,
+          3,
+          2,
+          4,
+          1,
+          2,
+          1,
+          1,
+          3,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          4,
+          3,
+          2,
+          1,
+          4,
+          1,
+          2,
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          3,
+          3,
+          1,
+          1,
+          3,
+          1,
+          2,
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 37,
+        "stateCoords": [
+          0,
+          3,
+          3,
+          2,
+          1,
+          4,
+          1,
+          2,
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          3,
+          2,
+          2,
+          1,
+          3,
+          1,
+          2,
+          1,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          4,
+          2,
+          1,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 38,
+        "stateCoords": [
+          1,
+          3,
+          2,
+          0,
+          2,
+          2,
+          1,
+          2,
+          1,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          3,
+          1,
+          0,
+          1,
+          2,
+          1,
+          2,
+          1,
+          1,
+          2,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          3,
+          1,
+          1,
+          1,
+          2,
+          1,
+          2,
+          0,
+          3,
+          2,
+          4
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          0,
+          3,
+          1,
+          2,
+          1,
+          1,
+          4,
+          1,
+          0,
+          4,
+          2,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          3,
+          2,
+          2,
+          1,
+          0,
+          4,
+          1,
+          0,
+          4,
+          2,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          2,
+          3,
+          2,
+          1,
+          0,
+          4,
+          1,
+          0,
+          4,
+          2,
+          4
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          1,
+          3,
+          3,
+          1,
+          1,
+          4,
+          1,
+          0,
+          4,
+          2,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          0,
+          3,
+          4,
+          1,
+          1,
+          4,
+          1,
+          0,
+          4,
+          2,
+          4
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          1,
+          2,
+          4,
+          1,
+          1,
+          4,
+          1,
+          0,
+          4,
+          1,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          2,
+          1,
+          4,
+          1,
+          1,
+          4,
+          1,
+          0,
+          4,
+          1,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          1,
+          2,
+          4,
+          1,
+          2,
+          4,
+          1,
+          0,
+          4,
+          1,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          2,
+          1,
+          4,
+          1,
+          1,
+          4,
+          1,
+          0,
+          4,
+          1,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          1,
+          0,
+          4,
+          1,
+          2,
+          4,
+          1,
+          4,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          2,
+          1,
+          4,
+          1,
+          1,
+          4,
+          1,
+          4,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          1,
+          2,
+          4,
+          1,
+          0,
+          4,
+          1,
+          4,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          0,
+          3,
+          4,
+          1,
+          0,
+          4,
+          1,
+          4,
+          0,
+          3,
+          1
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          1,
+          3,
+          3,
+          1,
+          0,
+          4,
+          1,
+          4,
+          0,
+          3,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          0,
+          3,
+          2,
+          1,
+          1,
+          4,
+          1,
+          4,
+          0,
+          3,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          0,
+          3,
+          2,
+          1,
+          1,
+          4,
+          1,
+          4,
+          0,
+          3,
+          1
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          2,
+          3,
+          0,
+          1,
+          0,
+          4,
+          1,
+          4,
+          0,
+          3,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          1,
+          1,
+          3,
+          1,
+          2,
+          0,
+          4,
+          1,
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          1,
+          3,
+          2,
+          1,
+          0,
+          4,
+          1,
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          0,
+          4,
+          1,
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          1,
+          1,
+          2,
+          2,
+          0,
+          4,
+          1,
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          0,
+          0,
+          2,
+          2,
+          1,
+          4,
+          1,
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          1,
+          0,
+          1,
+          3,
+          1,
+          4,
+          1,
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          1,
+          0,
+          0,
+          4,
+          1,
+          4,
+          1,
+          4,
+          0,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          1,
+          0,
+          1,
+          3,
+          1,
+          3,
+          0,
+          4,
+          0,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 40,
+        "stateCoords": [
+          3,
+          1,
+          1,
+          1,
+          3,
+          1,
+          3,
+          0,
+          4,
+          0,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          0,
+          2,
+          1,
+          4,
+          1,
+          3,
+          2,
+          4,
+          0,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          4,
+          0,
+          3,
+          1,
+          4,
+          1,
+          3,
+          2,
+          0,
+          1,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          1,
+          4,
+          1,
+          4,
+          2,
+          3,
+          2,
+          0,
+          1,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          4,
+          2,
+          4,
+          2,
+          4,
+          1,
+          3,
+          2,
+          0,
+          1,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          1,
+          4,
+          3,
+          4,
+          2,
+          3,
+          2,
+          0,
+          1,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 39,
+        "stateCoords": [
+          4,
+          2,
+          4,
+          4,
+          4,
+          1,
+          3,
+          2,
+          0,
+          1,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          1,
+          4,
+          3,
+          4,
+          2,
+          3,
+          2,
+          0,
+          1,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          4,
+          1,
+          4,
+          3,
+          4,
+          2,
+          3,
+          2,
+          0,
+          1,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          3,
+          2,
+          3,
+          4,
+          2,
+          3,
+          2,
+          0,
+          1,
+          0,
+          3
+        ]
+      }
+    ],
+    "-N2gzRD6MoUAWRj3PaOV": [
+      null,
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          0,
+          4,
+          0,
+          0,
+          2,
+          2,
+          4,
+          0,
+          0,
+          2,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          4,
+          1,
+          0,
+          1,
+          2,
+          4,
+          0,
+          0,
+          2,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          3,
+          2,
+          0,
+          1,
+          2,
+          4,
+          0,
+          0,
+          2,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          2,
+          3,
+          0,
+          1,
+          2,
+          4,
+          0,
+          0,
+          2,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          0,
+          2,
+          4,
+          0,
+          1,
+          1,
+          3,
+          1,
+          2,
+          3,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          2,
+          4,
+          1,
+          1,
+          2,
+          3,
+          1,
+          2,
+          3,
+          4,
+          2
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          1,
+          4,
+          2,
+          2,
+          2,
+          3,
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          1,
+          4,
+          3,
+          2,
+          1,
+          3,
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          2,
+          4,
+          4,
+          2,
+          0,
+          3,
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          1,
+          4,
+          3,
+          2,
+          0,
+          3,
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          0,
+          4,
+          4,
+          2,
+          1,
+          3,
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          1,
+          4,
+          3,
+          2,
+          0,
+          3,
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          0,
+          4,
+          4,
+          1,
+          0,
+          3,
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          0,
+          3,
+          4,
+          2,
+          0,
+          3,
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          0,
+          2,
+          4,
+          2,
+          0,
+          3,
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          1,
+          0,
+          2,
+          3,
+          2,
+          0,
+          3,
+          1,
+          1,
+          2,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          0,
+          2,
+          4,
+          1,
+          0,
+          3,
+          1,
+          1,
+          2,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          0,
+          3,
+          4,
+          1,
+          1,
+          3,
+          1,
+          1,
+          2,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 38,
+        "stateCoords": [
+          1,
+          1,
+          4,
+          4,
+          1,
+          1,
+          3,
+          1,
+          1,
+          2,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          2,
+          4,
+          3,
+          0,
+          1,
+          3,
+          1,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 39,
+        "stateCoords": [
+          0,
+          2,
+          4,
+          4,
+          0,
+          1,
+          3,
+          1,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          1,
+          4,
+          3,
+          0,
+          2,
+          3,
+          1,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          2,
+          4,
+          4,
+          0,
+          2,
+          3,
+          1,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          2,
+          4,
+          3,
+          0,
+          2,
+          3,
+          1,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 38,
+        "stateCoords": [
+          0,
+          2,
+          4,
+          2,
+          1,
+          2,
+          3,
+          1,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          2,
+          4,
+          1,
+          0,
+          2,
+          3,
+          1,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          2,
+          3,
+          1,
+          0,
+          2,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          0,
+          3,
+          2,
+          1,
+          0,
+          2,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          0,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          2,
+          2,
+          3,
+          1,
+          2,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          4,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          1,
+          2,
+          2,
+          1,
+          2,
+          4,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          2,
+          1,
+          1,
+          3,
+          4,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          2,
+          0,
+          1,
+          2,
+          4,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          2,
+          0,
+          0,
+          2,
+          4,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          3,
+          0,
+          1,
+          3,
+          4,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          3,
+          0,
+          2,
+          2,
+          4,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          3,
+          1,
+          2,
+          2,
+          4,
+          2,
+          4,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          4,
+          2,
+          2,
+          2,
+          3,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          3,
+          1,
+          2,
+          2,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          2,
+          0,
+          2,
+          3,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          2,
+          0,
+          1,
+          2,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          2,
+          1,
+          1,
+          2,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          1,
+          0,
+          1,
+          2,
+          3,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          2,
+          0,
+          0,
+          2,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          1,
+          0,
+          1,
+          3,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          3,
+          1,
+          0,
+          2,
+          3,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          2,
+          0,
+          3,
+          4,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          4,
+          2,
+          1,
+          3,
+          3,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          2,
+          1,
+          2,
+          4,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          2,
+          0,
+          2,
+          4,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          4,
+          3,
+          0,
+          1,
+          4,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          2,
+          0,
+          2,
+          4,
+          3,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 38,
+        "stateCoords": [
+          4,
+          3,
+          0,
+          3,
+          4,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          4,
+          2,
+          0,
+          2,
+          3,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 37,
+        "stateCoords": [
+          3,
+          2,
+          0,
+          1,
+          4,
+          2,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          4,
+          2,
+          0,
+          0,
+          4,
+          1,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          4,
+          1,
+          1,
+          0,
+          4,
+          0,
+          2,
+          0,
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          4,
+          0,
+          2,
+          0,
+          4,
+          1,
+          0,
+          1,
+          0,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          1,
+          3,
+          0,
+          3,
+          1,
+          0,
+          1,
+          0,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "-N2h6FFFrGGqFAUIRi6W": [
+      null,
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          0,
+          4,
+          0,
+          0,
+          2,
+          2,
+          3,
+          0,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          4,
+          0,
+          1,
+          1,
+          2,
+          3,
+          0,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          3,
+          1,
+          1,
+          1,
+          2,
+          3,
+          0,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          2,
+          1,
+          0,
+          1,
+          2,
+          3,
+          0,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2,
+          3,
+          0,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          1,
+          3,
+          0,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 38,
+        "stateCoords": [
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          3,
+          0,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          1,
+          3,
+          0,
+          0,
+          1,
+          3,
+          1,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          1,
+          3,
+          1,
+          1,
+          1,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          2,
+          3,
+          2,
+          1,
+          1,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          1,
+          1,
+          3,
+          3,
+          1,
+          2,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          2,
+          3,
+          4,
+          1,
+          1,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          1,
+          2,
+          4,
+          1,
+          1,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          1,
+          1,
+          2,
+          4,
+          2,
+          1,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          1,
+          2,
+          4,
+          2,
+          1,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          1,
+          3,
+          3,
+          1,
+          1,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          1,
+          3,
+          4,
+          2,
+          1,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          2,
+          3,
+          3,
+          2,
+          0,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          1,
+          2,
+          3,
+          2,
+          0,
+          1,
+          3,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          0,
+          1,
+          3,
+          2,
+          0,
+          4,
+          2,
+          4,
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          0,
+          0,
+          3,
+          3,
+          0,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 40,
+        "stateCoords": [
+          4,
+          0,
+          1,
+          3,
+          3,
+          0,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          0,
+          1,
+          3,
+          3,
+          0,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          0,
+          3,
+          3,
+          4,
+          0,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          0,
+          3,
+          4,
+          4,
+          0,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          0,
+          3,
+          3,
+          3,
+          0,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          0,
+          3,
+          2,
+          3,
+          0,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          4,
+          0,
+          3,
+          3,
+          2,
+          0,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          0,
+          3,
+          4,
+          3,
+          0,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          4,
+          0,
+          2,
+          4,
+          3,
+          0,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          3,
+          0,
+          1,
+          4,
+          3,
+          1,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          1,
+          0,
+          4,
+          3,
+          1,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          1,
+          1,
+          4,
+          2,
+          1,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          2,
+          1,
+          3,
+          2,
+          1,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          1,
+          0,
+          3,
+          2,
+          2,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          2,
+          0,
+          4,
+          2,
+          3,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          3,
+          0,
+          3,
+          1,
+          3,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          3,
+          0,
+          2,
+          1,
+          3,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 40,
+        "stateCoords": [
+          0,
+          3,
+          0,
+          1,
+          2,
+          3,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          1,
+          3,
+          0,
+          0,
+          3,
+          3,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          3,
+          1,
+          0,
+          2,
+          3,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          3,
+          3,
+          2,
+          0,
+          2,
+          2,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          3,
+          2,
+          1,
+          2,
+          3,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          2,
+          3,
+          1,
+          1,
+          3,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          2,
+          3,
+          2,
+          2,
+          3,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 37,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          2,
+          3,
+          3,
+          2,
+          3,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          3,
+          3,
+          2,
+          2,
+          4,
+          4,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 39,
+        "stagAction": 39,
+        "stateCoords": [
+          2,
+          4,
+          4,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 38,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          3,
+          4,
+          3,
+          2,
+          4,
+          3,
+          3,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 40,
+        "stateCoords": [
+          2,
+          4,
+          3,
+          3,
+          2,
+          3,
+          3,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 37,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          3,
+          2,
+          3,
+          3,
+          3,
+          3,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 40,
+        "humanAction": 39,
+        "stagAction": 38,
+        "stateCoords": [
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          3,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 39,
+        "stagAction": 32,
+        "stateCoords": [
+          4,
+          3,
+          2,
+          3,
+          2,
+          3,
+          3,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 37,
+        "stagAction": 39,
+        "stateCoords": [
+          3,
+          3,
+          2,
+          4,
+          2,
+          3,
+          3,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 39,
+        "stagAction": 37,
+        "stateCoords": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          4,
+          3,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 38,
+        "stagAction": 38,
+        "stateCoords": [
+          2,
+          4,
+          2,
+          4,
+          2,
+          3,
+          3,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 38,
+        "humanAction": 38,
+        "stagAction": 32,
+        "stateCoords": [
+          2,
+          3,
+          1,
+          4,
+          1,
+          3,
+          3,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 37,
+        "humanAction": 40,
+        "stagAction": 39,
+        "stateCoords": [
+          1,
+          3,
+          0,
+          4,
+          1,
+          3,
+          3,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      },
+      {
+        "computerAction": 39,
+        "humanAction": 40,
+        "stagAction": 32,
+        "stateCoords": [
+          1,
+          2,
+          1,
+          4,
+          1,
+          4,
+          3,
+          2,
+          4,
+          4,
+          4,
+          1
+        ]
+      }
+    ]
+  }
+}
