@@ -69,7 +69,8 @@ def vec2mat(coords_state, grid_size=(5,5)):
       g[coords_state[i], coords_state[i+1]] = 1
   return NormalizeData(np.dstack((r,g,b)))
 
-  return map
+def combine_following_states(prev, current):
+  return NormalizeData(prev * 0.9 + current)
 
 class HumamModel:
   def __init__(self):
@@ -92,14 +93,14 @@ class HumamModel:
     return action
 
 class DQNAgent:
-    def __init__(self, state_size, action_size):
+    def __init__(self, state_size, action_size, epsilon_decay, initial_epsilon):
         
         self.memory = deque(maxlen=100000)
         
-        self.gamma = 0.999 # discount rate
-        self.epsilon = 1.0 # exploration rate
+        self.gamma = 0.95 # discount rate
+        self.epsilon = initial_epsilon # exploration rate
         self.epsilon_min = 0.1
-        self.epsilon_decay = 0.9975
+        self.epsilon_decay = epsilon_decay
         self.batch_size = 128
         self.train_start = 2000 # memory_size
 
@@ -224,7 +225,7 @@ class Monitor:
     fig, self.ax1 = plt.subplots(1, 1, figsize=(18, 9))
     self.ax1.set_ylabel('Score', fontsize=15)
     self.ax1.set_xlabel('Episode', fontsize=15)
-
+    
   def PlotModel(self, score, human_score, episode, agent_name):
     window_size = 50
     self.scores.append(score)
@@ -237,8 +238,8 @@ class Monitor:
         self.averages.append(sum(self.scores) / len(self.scores))
 
     self.ax1.plot(self.scores, 'b')
-    self.ax1.plot(self.human_scores, 'r')
-    self.ax1.plot(self.averages, 'g')
+    # self.ax1.plot(self.human_scores, 'r')
+    self.ax1.plot(self.averages, 'r')
 
     try:
         plt.savefig("data/images/"+agent_name+".png", dpi = 150)
@@ -247,22 +248,23 @@ class Monitor:
 
     return str(self.averages[-1])[:5]
 
-def run(episodes = 1100, train=False, beta = 0.5, SARL=False):
-  env = gym.make("StagHunt-Hunt-v0", obs_type='coords', load_renderer= True, enable_multiagent=True, forage_quantity=3) # you can pass config parameters here
+def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SARL=False):
   # replace the computer initial position with the human position
   human_model = HumamModel()
-  agent_model = DQNAgent([5,5,3], env.action_space.n)
   if not train:
+    agent_model = DQNAgent((5,5,3), env.action_space.n, epsilon_decay, 0)
     if SARL:
-      agent_model.load("data/weights/SARL_ddqn_agent.h5")
+      agent_model.load("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
     else:
-      agent_model.load("data/weights/ddqn_agent.h5")
+      agent_model.load("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
+    episodes = 5
+  else:
+    agent_model = DQNAgent((5,5,3), env.action_space.n, epsilon_decay, 1.0)
   monitor = Monitor()
 
   for ep in range(episodes):    
     obs = env.reset()
     obs = vec2mat(obs)
-    # obs = np.expand_dims(obs, axis=0)
     episodes_per_game = 60
 
     ep_reward = 0
@@ -274,7 +276,7 @@ def run(episodes = 1100, train=False, beta = 0.5, SARL=False):
       next_obs, rewards, done, info = env.step([computer_action, human_action])
       next_obs = next_obs[0]
       next_obs = vec2mat(next_obs)
-      # next_obs = np.expand_dims(next_obs, axis=0)
+      next_obs = combine_following_states(obs, next_obs)
       agent_reward = rewards[0]
       SARL_reward = beta * agent_reward + (1 - beta) * rewards[1]
       if train:
@@ -299,33 +301,36 @@ def run(episodes = 1100, train=False, beta = 0.5, SARL=False):
       agent_model.updateEpsilon()
       # every episode, plot the result
       if SARL:
-        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, 'SARL_ddqn_agent')
+        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, "SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay))
       else:
-        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, 'ddqn_agent')
-      print("episode: {}/{}, score: {:.2}, average: {}, e: {:.3}".format(ep, episodes, ep_reward, average, agent_model.epsilon))
+        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, "ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay))
+      print("episode: {}/{}, score: {:.2}, average: {}, e: {:.3}, SARL score: {}".format(ep, episodes, ep_reward, average, agent_model.epsilon, ep_SARL_reward))
     else:
-      print("episode: {}/{}, score: {}, SARL score: {}".format(ep, episodes, ep_reward, ep_SARL_reward))
+      print("episode: {}/{}, score: {:.2}, SARL score: {}".format(ep, episodes, ep_reward, ep_SARL_reward))
     ep_reward = 0
     ep_human_reward = 0
     ep_SARL_reward = 0
 
   if SARL:
-    agent_model.save("data/weights/SARL_ddqn_agent.h5")
+    agent_model.save("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
   else:
-    agent_model.save("data/weights/ddqn_agent.h5")
+    agent_model.save("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
   env.close()
 
 if __name__ == "__main__":
+  env = gym.make("StagHunt-Hunt-v0", obs_type='coords', load_renderer= True, enable_multiagent=True, forage_quantity=3) # you can pass config parameters here
+
   #train dqn agent
-  run(train=True, SARL=False)
+  # run(env, episodes=4000, epsilon_decay = 0.9995, train=True, SARL=False)
   #test dqn agent
-  run(episodes=5, train=False, SARL=False)
+  # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, SARL=False)
 
   #train SARL dqn agent
-  run(train=True, SARL=True)
+  # run(env, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.57 , SARL=True)
   #test SARL dqn agent
-  run(episodes=5, train=False, SARL=True)
+  run(env, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.57, SARL=True)
   
+  # env.close()
 
 
 
