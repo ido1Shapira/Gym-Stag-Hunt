@@ -17,7 +17,7 @@ from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.layers import Input, Dense, Conv2D, MaxPool2D, Flatten
 from tensorflow.keras.optimizers import Adam
 
-random_seed = 0
+random_seed = 42
 # if setting seed the result is always the same
 # np.random.seed(random_seed)
 # random.seed(random_seed)
@@ -25,13 +25,13 @@ random_seed = 0
 
 def valid_action(position, action, grid_size):
   if action == LEFT:
-    return position[0] > 0
-  elif action == UP:
     return position[1] > 0
+  elif action == UP:
+    return position[0] > 0
   elif action == RIGHT:
-    return position[0] < (grid_size[1]-1)
+    return position[1] < (grid_size[1]-1)
   elif action == DOWN:
-    return position[1] < (grid_size[0]-1)
+    return position[0] < (grid_size[0]-1)
   return False
 
 def getValidActions(position, grid_size):
@@ -49,28 +49,72 @@ def randomAction(position, grid_size=(5,5)):
   return randomAction
 
 def NormalizeData(data):
-    return (data - np.min(data)) / (np.max(data) - np.min(data))
+  return (data - np.min(data)) / (np.max(data) - np.min(data))
 
 def vec2mat(coords_state, grid_size=(5,5)):
   r = np.zeros(grid_size)
   g = np.zeros(grid_size)
   b = np.zeros(grid_size)
-
-  # computer pos
-  b[coords_state[0], coords_state[1]] += 1
+  # computer pos    
+  b[coords_state[1], coords_state[0]] += 1
   # human pos
-  r[coords_state[2], coords_state[3]] += 1
+  r[coords_state[3], coords_state[2]] += 1
   # stag pos
-  r[coords_state[4], coords_state[5]] += 0.8039
-  g[coords_state[4], coords_state[5]] += 0.498
-  b[coords_state[4], coords_state[5]] += 0.1961
+  r[coords_state[5], coords_state[4]] += 0.8039
+  g[coords_state[5], coords_state[4]] += 0.498
+  b[coords_state[5], coords_state[4]] += 0.1961
   # plants pos
   for i in range(6, 12, 2):
-      g[coords_state[i], coords_state[i+1]] = 1
+      g[coords_state[i+1], coords_state[i]] += 1
+
+  # plt.imshow(np.dstack((r,g,b)))
+  # plt.show()
   return NormalizeData(np.dstack((r,g,b)))
 
 def combine_following_states(prev, current):
-  return NormalizeData(prev * 0.9 + current)
+  r2, g2, b2 = current[:, :, 0], current[:, :, 1], current[:, :, 2]
+  human_pos = np.where(r2 == 1)
+  computer_pos = np.where(b2 == 1)
+  bushes_pos = np.where(g2 == 1)
+  stag_pos = np.where(r2 == 0.8039, g2 == 0.498, b2 == 0.1961)
+  
+  new_cell = prev * 0.75
+
+  new_cell[:, :, 0][human_pos] = 1
+  new_cell[:, :, 1][bushes_pos] = 1
+  new_cell[:, :, 2][computer_pos] = 1
+
+  new_cell[:, :, 0][stag_pos] += 0.8039
+  new_cell[:, :, 1][stag_pos] += 0.498
+  new_cell[:, :, 2][stag_pos] += 0.1961
+
+  return new_cell
+
+
+class Follow_Stag:
+  def __init__(self, grid_size=(5,5)):
+    self.grid_size = grid_size
+    self.stag_pos = [2,2]
+    self.human_pos = [0,0]
+  
+  def update_pos(self, coords_state):
+    self.human_pos = [coords_state[3], coords_state[2]]
+    self.stag_pos = [coords_state[5], coords_state[4]]
+
+  def takeActionTo(self, current, to):
+    if current[0] < to[0]:
+        return DOWN #down
+    elif current[0] > to[0]:
+        return UP #up
+    elif current[1] < to[1]:
+        return RIGHT #right
+    elif current[1] > to[1]:
+        return LEFT #left
+    return randomAction(self.human_pos) #takes random action
+  
+  def predict_action(self):
+    return self.takeActionTo(self.human_pos, self.stag_pos)
+  
 
 class HumamModel:
   def __init__(self):
@@ -102,7 +146,7 @@ class DQNAgent:
         self.epsilon_min = 0.1
         self.epsilon_decay = epsilon_decay
         self.batch_size = 128
-        self.train_start = 2000 # memory_size
+        self.train_start = 1000 # memory_size
 
         # defining model parameters
         self.ddqn = True
@@ -133,7 +177,7 @@ class DQNAgent:
       X = Dense(action_space, activation="linear")(X)
 
       model = Model(inputs = X_input, outputs = X)
-      model.compile(loss="mean_squared_error", optimizer=Adam(learning_rate=0.0002), metrics=["accuracy"])
+      model.compile(loss="mean_squared_error", optimizer=Adam(learning_rate=0.00001), metrics=["accuracy"])
       return model
 
     # after some time interval update the target model to be same with model
@@ -249,8 +293,8 @@ class Monitor:
     return str(self.averages[-1])[:5]
 
 def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SARL=False):
-  # replace the computer initial position with the human position
   human_model = HumamModel()
+  # human_model = Follow_Stag()
   if not train:
     agent_model = DQNAgent((5,5,3), env.action_space.n, epsilon_decay, 0)
     if SARL:
@@ -264,9 +308,12 @@ def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SAR
 
   for ep in range(episodes):    
     obs = env.reset()
+    # human_model.update_pos(obs)
     obs = vec2mat(obs)
+    if not train:
+      env.render()
+    
     episodes_per_game = 60
-
     ep_reward = 0
     ep_human_reward = 0
     ep_SARL_reward = 0
@@ -275,8 +322,9 @@ def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SAR
       human_action = human_model.predict_action(obs)
       next_obs, rewards, done, info = env.step([computer_action, human_action])
       next_obs = next_obs[0]
+      # human_model.update_pos(next_obs)
       next_obs = vec2mat(next_obs)
-      next_obs = combine_following_states(obs, next_obs)
+      # next_obs = combine_following_states(obs, next_obs)
       agent_reward = rewards[0]
       SARL_reward = beta * agent_reward + (1 - beta) * rewards[1]
       if train:
@@ -293,7 +341,7 @@ def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SAR
       ep_reward += agent_reward
       ep_human_reward += rewards[1]
       ep_SARL_reward += SARL_reward
-          
+      
     if train:
       # every step update target model
       agent_model.update_target_model()
@@ -311,27 +359,24 @@ def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SAR
     ep_human_reward = 0
     ep_SARL_reward = 0
 
-  if SARL:
-    agent_model.save("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
-  else:
-    agent_model.save("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
+  if train:
+    if SARL:
+      agent_model.save("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
+    else:
+      agent_model.save("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
   env.close()
 
 if __name__ == "__main__":
   env = gym.make("StagHunt-Hunt-v0", obs_type='coords', load_renderer= True, enable_multiagent=True, forage_quantity=3) # you can pass config parameters here
 
   #train dqn agent
-  # run(env, episodes=4000, epsilon_decay = 0.9995, train=True, SARL=False)
+  run(env, episodes=1100, epsilon_decay = 0.9975, train=True, SARL=False)
   #test dqn agent
   # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, SARL=False)
 
   #train SARL dqn agent
-  # run(env, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.57 , SARL=True)
+  # run(env, episodes=1100, epsilon_decay = 0.9975, train=True, beta=0.57 , SARL=True)
   #test SARL dqn agent
-  run(env, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.57, SARL=True)
+  # run(env, episodes=1100, epsilon_decay = 0.9975, train=False, beta=0.57, SARL=True)
   
   # env.close()
-
-
-
-
