@@ -227,12 +227,16 @@ function logics()
 	for(var i=0; i<shrubs.length; i++) {
 		var overlaps = false; 
 		var temp_shrub = shrubs[i];
-		if(temp_shrub.tile[0] == human_player.tileFrom[0] && temp_shrub.tile[1] == human_player.tileFrom[1]) {
+		if(temp_shrub.tile[0] == human_player.tileTo[0] && temp_shrub.tile[1] == human_player.tileTo[1]
+			& (currentFrameTime-human_player.timeMoved)>=human_player.delayMove) {
 			overlaps = true;
-			human_player.score = human_player.score + forage_reward;		
+			human_player.score = human_player.score + forage_reward;
+			// if(temp_shrub.tile[0] == computer_player.tileFrom[0] && temp_shrub.tile[1] == computer_player.tileFrom[1]) {
+			// 	computer_player.score = computer_player.score + forage_reward;
+			// }
 		}
-
-		if(temp_shrub.tile[0] == computer_player.tileFrom[0] && temp_shrub.tile[1] == computer_player.tileFrom[1]) {
+		if(temp_shrub.tile[0] == computer_player.tileTo[0] && temp_shrub.tile[1] == computer_player.tileTo[1]
+			& (currentFrameTime-human_player.timeMoved)>=human_player.delayMove) {
 			overlaps = true;
 			computer_player.score = computer_player.score + forage_reward;
 		}

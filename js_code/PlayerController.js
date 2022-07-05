@@ -4,15 +4,15 @@ class PlayerController extends Controller{
         "follow_stag": false,
         "closest": false,
 
-        // "ddqn": false,
-        // "sarl ddqn": false,
+        "ddqn": false,
+        "sarl ddqn": false,
     }
 
     toAction = {
-        1: 37, //left
-        2: 38, //up
-        3: 39, //right
-        4: 40, //down
+        0: 37, //left
+        1: 38, //up
+        2: 39, //right
+        3: 40, //down
     }
 
     constructor(player, type) {
@@ -30,13 +30,14 @@ class PlayerController extends Controller{
             var baselines = Object.keys(this.TYPES).slice(0,3);
             type = baselines[Math.floor(baselines.length * Math.random())];
         }
-        // if(type == -3) {
-        //     var ddqns = Object.keys(this.TYPES).slice(3,5);
-        //     type = ddqns[Math.floor(ddqns.length * Math.random())];
-        // }
+        if(type == -3) {
+            var ddqns = Object.keys(this.TYPES).slice(3,5);
+            type = ddqns[Math.floor(ddqns.length * Math.random())];
+        }
     
         this.TYPES[type] = true;
         this.type = type;
+        console.log(this.type);
 
         this.loadAgent();
     }
@@ -52,8 +53,8 @@ class PlayerController extends Controller{
             case "closest":
                 return this.closest(state);
 
-            // case "ddqn": case "sarl ddqn":
-            //     return this.predict(state);
+            case "ddqn": case "sarl ddqn":
+                return this.predict(state);
             default:
                 throw "move(state): not a valid baseline"
         }
@@ -86,10 +87,10 @@ class PlayerController extends Controller{
         var path = 'data/models/';
         switch(this.type) {
             case "ddqn":
-                path += 'ddqn_agent';
+                path += 'ddqn_agent_4000_0.9995_withoutHistory';
                 break;
             case "sarl ddqn":
-                path += 'SARL_ddqn_agent_0.4';
+                path += 'SARL_ddqn_agent_0.57_4000_0.9995_withoutHistory';
                 break;
             
             default:
@@ -98,8 +99,8 @@ class PlayerController extends Controller{
         }
         if(deepRL) {
             (async () => {
-                // this.model = await tf.loadLayersModel(path + '/model.json');
-                this.model = await tf.loadGraphModel(path + '/model.json');
+                this.model = await tf.loadLayersModel(path + '/model.json');
+                // this.model = await tf.loadGraphModel(path + '/model.json');
             })()
         }
     }
@@ -133,33 +134,35 @@ class PlayerController extends Controller{
         return result;
     }
 
-    preproccess(state) {
-        var r = nj.add(
-            this.divideByScalar(state[this.toIndex['Human awards']], 2),
-            nj.add(
-                state[this.toIndex['Human trace']],
-                state[this.toIndex['All awards']]));
-        
-        var g = nj.add(
-            this.divideByScalar(state[this.toIndex['Board']] , 3),
-            nj.array(state[this.toIndex['All awards']], 'float32'));
-        
-        var b = nj.add(
-            this.divideByScalar(state[this.toIndex['Computer awards']], 2),
-            nj.add(
-                nj.array(state[this.toIndex['Computer trace']], 'float32'),
-                nj.array(state[this.toIndex['All awards']], 'float32')));
+    preproccess(state_coords) {
+        var state = JSON.parse(JSON.stringify(state_coords));
+        for (var i=0; i<state.length; i++) {
+            state[i] -= 1
+        }
+        var map_size = [5,5]
+        var r = nj.zeros(map_size);
+        var g = nj.zeros(map_size);
+        var b = nj.zeros(map_size);
 
-        var rgb = nj.stack([b, g, r], -1, 'float32');
+        //computer pos    
+        b.set(state[0], state[1], 1);
+        //human pos
+        r.set(state[2], state[3], 1);
+        //stag pos
+        r.set(state[4], state[5], r.get(state[4], state[5]) + 0.8039);
+        g.set(state[4], state[5], g.get(state[4], state[5]) + 0.498);
+        b.set(state[4], state[5], b.get(state[4], state[5]) + 0.1961);
+        //plants pos
+        for( var i=6; i<12; i+=2) {
+            g.set(state[i], state[i+1], g.get(state[i], state[i+1]) + 1);
+        }
+
+        var rgb = nj.stack([r, g, b], -1, 'float32');
         
         // NormalizeImage
         var min_matrix = nj.ones(rgb.shape, "float32").multiply(nj.min(rgb));
         var max_matrix = nj.ones(rgb.shape, "float32").multiply(nj.max(rgb));
         rgb = nj.divide(nj.subtract(rgb, min_matrix), nj.subtract(max_matrix, min_matrix)).tolist();
-        
-        state = nj.stack([state[0], state[1], state[2],
-                       state[3],state[4],state[5]], -1, 'float32').tolist();
-        
         return rgb;
     }
     predict(state) {
@@ -167,15 +170,15 @@ class PlayerController extends Controller{
         var tensorImg = tf.tensor3d(img).expandDims(0);
         var score = this.model.predict(tensorImg).dataSync();
         var dict_scores = {
-            0: score[0], //stay
-            1: score[1], //left
-            2: score[2], //up
-            3: score[3], //right
-            4: score[4], //down
+            0: score[0], //left
+            1: score[1], //up
+            2: score[2], //right
+            3: score[3], //down
         }
         var action = this.argmax(dict_scores);
         while(! this.validAction(this.toAction[action], state[0])) {
             delete dict_scores[action];
+            console.log(action);
             action = this.argmax(dict_scores);
         }
 

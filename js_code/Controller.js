@@ -8,13 +8,13 @@ class Controller {
         switch(action) {
             case 32: //stay
                 return true;
-            case 38: //up
+            case 38: case 1://up
                 return this.controlled.tileFrom[1]>0 && this.controlled.tileFrom[1]-1>0;
-            case 40: //down
+            case 40: case 3://down
                 return this.controlled.tileFrom[1]<(mapH-1)&& this.controlled.tileFrom[1]+1<(mapH-1);
-            case 37: //left
+            case 37: case 0://left
                 return this.controlled.tileFrom[0]>0 && this.controlled.tileFrom[0]-1>0;
-            case 39: //right
+            case 39: case 2://right
                 return this.controlled.tileFrom[0]<(mapW-1) && this.controlled.tileFrom[0]+1 <(mapW-1);
             default:
                 return false;
