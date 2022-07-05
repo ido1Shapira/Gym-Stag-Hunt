@@ -1,4 +1,3 @@
-from turtle import position
 import gym
 import gym_stag_hunt
 # Possible Moves
