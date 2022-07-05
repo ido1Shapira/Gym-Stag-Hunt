@@ -24,22 +24,40 @@ def vec2mat(coords_state, grid_size=(5,5)):
   r = np.zeros(grid_size)
   g = np.zeros(grid_size)
   b = np.zeros(grid_size)
-
-  # computer pos
-  b[coords_state[0], coords_state[1]] += 1
+  # computer pos    
+  b[coords_state[1], coords_state[0]] += 1
   # human pos
-  r[coords_state[2], coords_state[3]] += 1
+  r[coords_state[3], coords_state[2]] += 1
   # stag pos
-  r[coords_state[4], coords_state[5]] += 0.8039
-  g[coords_state[4], coords_state[5]] += 0.498
-  b[coords_state[4], coords_state[5]] += 0.1961
+  r[coords_state[5], coords_state[4]] += 0.8039
+  g[coords_state[5], coords_state[4]] += 0.498
+  b[coords_state[5], coords_state[4]] += 0.1961
   # plants pos
   for i in range(6, 12, 2):
-      g[coords_state[i], coords_state[i+1]] = 1
+      g[coords_state[i+1], coords_state[i]] += 1
+
+  # plt.imshow(np.dstack((r,g,b)))
+  # plt.show()
   return NormalizeData(np.dstack((r,g,b)))
 
 def combine_following_states(prev, current):
-  return NormalizeData(prev * 0.9 + current)
+  r2, g2, b2 = current[:, :, 0], current[:, :, 1], current[:, :, 2]
+  human_pos = np.where(r2 == 1)
+  computer_pos = np.where(b2 == 1)
+  bushes_pos = np.where(g2 == 1)
+  stag_pos = np.where(r2 == 0.8039, g2 == 0.498, b2 == 0.1961)
+  
+  new_cell = prev * 0.75
+
+  new_cell[:, :, 0][human_pos] = 1
+  new_cell[:, :, 1][bushes_pos] = 1
+  new_cell[:, :, 2][computer_pos] = 1
+
+  new_cell[:, :, 0][stag_pos] += 0.8039
+  new_cell[:, :, 1][stag_pos] += 0.498
+  new_cell[:, :, 2][stag_pos] += 0.1961
+
+  return new_cell
 
 class HumamModel:
   def __init__(self):
@@ -63,13 +81,13 @@ class HumamModel:
       
   def valid_action(self, position, action):
     if action == LEFT:
-      return position[0] > 0
-    elif action == UP:
       return position[1] > 0
+    elif action == UP:
+      return position[0] > 0
     elif action == RIGHT:
-      return position[0] < (self.grid_size[1]-1)
+      return position[1] < (self.grid_size[1]-1)
     elif action == DOWN:
-      return position[1] < (self.grid_size[0]-1)
+      return position[0] < (self.grid_size[0]-1)
     return False
   
   def getValidActions(self, position):
@@ -116,7 +134,7 @@ for ep in range(episodes):
     next_obs, rewards, done, info = env.step([computer_action, human_action])
     next_obs = next_obs[0]
     next_obs = vec2mat(next_obs)
-    next_obs = combine_following_states(obs, next_obs)
+    # next_obs = combine_following_states(obs, next_obs)
     time.sleep(0.2)
     obs = next_obs
     print("info: " ,ep, iteration, rewards, done, info)
