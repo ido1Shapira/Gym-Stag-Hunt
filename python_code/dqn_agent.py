@@ -374,8 +374,8 @@ if __name__ == "__main__":
   # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, SARL=False)
 
   #train SARL dqn agent
-  # run(env, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.57 , SARL=True)
+  run(env, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.505 , SARL=True)
   #test SARL dqn agent
-  run(env, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.57, SARL=True)
+  # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.57, SARL=True)
   
   # env.close()
