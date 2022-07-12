@@ -135,7 +135,7 @@ for ep in range(episodes):
     next_obs = next_obs[0]
     next_obs = vec2mat(next_obs)
     # next_obs = combine_following_states(obs, next_obs)
-    time.sleep(0.2)
+    time.sleep(0.5)
     obs = next_obs
     print("info: " ,ep, iteration, rewards, done, info)
 env.close()
