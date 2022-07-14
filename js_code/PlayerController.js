@@ -6,6 +6,10 @@ class PlayerController extends Controller{
 
         "ddqn": false,
         "sarl ddqn": false,
+        "empathy ddqn": false,
+        "dropout ddqn": false,
+
+        "human model": false,
     }
 
     toAction = {
@@ -53,7 +57,8 @@ class PlayerController extends Controller{
             case "closest":
                 return this.closest(state);
 
-            case "ddqn": case "sarl ddqn":
+            case "ddqn": case "sarl ddqn": case "human model":
+            case "empathy ddqn": case "dropout ddqn":
                 return this.predict(state);
             default:
                 throw "move(state): not a valid baseline"
@@ -92,7 +97,15 @@ class PlayerController extends Controller{
             case "sarl ddqn":
                 path += 'SARL_ddqn_agent_0.57_4000_0.9995_withoutHistory';
                 break;
-            
+            case "empathy ddqn":
+                path += 'empathy_ddqn_agent_4000_0.9995_withoutHistory';
+                break;
+            case "dropout ddqn":
+                path += 'dropout_ddqn_agent_4000_0.9995_withoutHistory';
+                break;
+            case "human model":
+                path += 'human_model_withoutHistory'
+                break;
             default:
                 deepRL = false;
 
@@ -176,10 +189,15 @@ class PlayerController extends Controller{
             3: score[3], //down
         }
         var action = this.argmax(dict_scores);
-        while(! this.validAction(this.toAction[action], state[0])) {
+        while(! this.validAction(this.toAction[action])) {
             delete dict_scores[action];
-            console.log(action);
+            var prev_action = action;
             action = this.argmax(dict_scores);
+            if (action == prev_action) {
+                console.log("agent take a random action because action: " + action + "is not allowed");
+                return this.random();
+            }
+            
         }
 
         
