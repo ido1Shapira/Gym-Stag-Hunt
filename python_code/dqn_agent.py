@@ -5,8 +5,6 @@ from gym_stag_hunt.src.games.abstract_grid_game import UP, LEFT, DOWN, RIGHT, ST
 
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
-
 import numpy as np
 import random
 import time
@@ -61,35 +59,37 @@ def vec2mat(coords_state, grid_size=(5,5)):
   # human pos
   r[coords_state[3], coords_state[2]] += 1
   # stag pos
-  r[coords_state[5], coords_state[4]] += 0.8039
-  g[coords_state[5], coords_state[4]] += 0.498
-  b[coords_state[5], coords_state[4]] += 0.1961
+  r[coords_state[5], coords_state[4]] += 0.5
+  g[coords_state[5], coords_state[4]] += 0.5
+  b[coords_state[5], coords_state[4]] += 0.5
   # plants pos
   for i in range(6, 12, 2):
       g[coords_state[i+1], coords_state[i]] += 1
 
-  # plt.imshow(np.dstack((r,g,b)))
-  # plt.show()
-  return NormalizeData(np.dstack((r,g,b)))
+  return np.dstack((r,g,b))
 
 def combine_following_states(prev, current):
   r2, g2, b2 = current[:, :, 0], current[:, :, 1], current[:, :, 2]
-  human_pos = np.where(r2 == 1)
-  computer_pos = np.where(b2 == 1)
-  bushes_pos = np.where(g2 == 1)
-  stag_pos = np.where(r2 == 0.8039, g2 == 0.498, b2 == 0.1961)
-  
-  new_cell = prev * 0.75
+  human_pos = np.where((r2 == 1) | (r2 == 1.5))
+  computer_pos = np.where((b2 == 1) | (b2 == 1.5))
+  bushes_pos = np.where((g2 == 1) | (g2 == 1.5))
+  stag_pos = np.where(((r2 == 0.5) & (g2 == 0.5) & (b2 == 0.5)) |
+                      ((r2 == 1.5) & (g2 == 0.5) & (b2 == 0.5)) |
+                      ((r2 == 0.5) & (g2 == 1.5) & (b2 == 0.5)) |
+                      ((r2 == 0.5) & (g2 == 0.5) & (b2 == 1.5)))
+
+  new_cell = prev * 0.9
 
   new_cell[:, :, 0][human_pos] = 1
+  new_cell[:, :, 1] = np.zeros([5,5])
   new_cell[:, :, 1][bushes_pos] = 1
   new_cell[:, :, 2][computer_pos] = 1
 
-  new_cell[:, :, 0][stag_pos] += 0.8039
-  new_cell[:, :, 1][stag_pos] += 0.498
-  new_cell[:, :, 2][stag_pos] += 0.1961
+  new_cell[:, :, 0][stag_pos] += 0.5
+  new_cell[:, :, 1][stag_pos] += 0.5
+  new_cell[:, :, 2][stag_pos] += 0.5
 
-  return new_cell
+  return NormalizeData(new_cell)
 
 
 class Follow_Stag:
@@ -118,8 +118,8 @@ class Follow_Stag:
   
 
 class HumamModel:
-  def __init__(self, version="v0"):
-    self.model = tf.keras.models.load_model('./data/humanModel/model_'+version+'.h5')
+  def __init__(self):
+    self.model = tf.keras.models.load_model('./data/humanModel/model_v0.h5')
 
   def predict_action(self, state):
     position = np.where(state[:, :, 0] == np.amax(state[:, :, 0]))
@@ -294,15 +294,14 @@ class Monitor:
     return str(self.averages[-1])[:5]
 
 def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SARL=False):
-  human_model_version = "v1"
-  human_model = HumamModel(human_model_version)
+  human_model = HumamModel()
   # human_model = Follow_Stag()
   if not train:
     agent_model = DQNAgent((5,5,3), env.action_space.n, epsilon_decay, 0)
     if SARL:
-      agent_model.load("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version+".h5")
+      agent_model.load("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
     else:
-      agent_model.load("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version+".h5")
+      agent_model.load("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
     episodes = 5
   else:
     agent_model = DQNAgent((5,5,3), env.action_space.n, epsilon_decay, 1.0)
@@ -326,7 +325,7 @@ def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SAR
       next_obs = next_obs[0]
       # human_model.update_pos(next_obs)
       next_obs = vec2mat(next_obs)
-      # next_obs = combine_following_states(obs, next_obs)
+      next_obs = combine_following_states(obs, next_obs)
       agent_reward = rewards[0]
       SARL_reward = beta * agent_reward + (1 - beta) * rewards[1]
       if train:
@@ -351,9 +350,9 @@ def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SAR
       agent_model.updateEpsilon()
       # every episode, plot the result
       if SARL:
-        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, "SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version)
+        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, "SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay))
       else:
-        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, "ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version)
+        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, "ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay))
       print("episode: {}/{}, score: {:.2}, average: {}, e: {:.3}, SARL score: {}".format(ep, episodes, ep_reward, average, agent_model.epsilon, ep_SARL_reward))
     else:
       print("episode: {}/{}, score: {:.2}, SARL score: {}".format(ep, episodes, ep_reward, ep_SARL_reward))
@@ -363,22 +362,22 @@ def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SAR
 
   if train:
     if SARL:
-      agent_model.save("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version+".h5")
+      agent_model.save("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
     else:
-      agent_model.save("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version+".h5")
+      agent_model.save("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
   env.close()
 
 if __name__ == "__main__":
   env = gym.make("StagHunt-Hunt-v0", obs_type='coords', load_renderer= True, enable_multiagent=True, forage_quantity=3) # you can pass config parameters here
 
   #train dqn agent
-  run(env, episodes=4000, epsilon_decay = 0.9995, train=True, SARL=False)
+  # run(env, episodes=2000, epsilon_decay = 0.999, train=True, SARL=False)
   #test dqn agent
-  # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, SARL=False)
+  # run(env, episodes=2000, epsilon_decay = 0.999, train=False, SARL=False)
 
   #train SARL dqn agent
-  # run(env, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.52 , SARL=True)
+  run(env, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.52 , SARL=True)
   #test SARL dqn agent
-  # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.52, SARL=True)
+  # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.57, SARL=True)
   
   # env.close()

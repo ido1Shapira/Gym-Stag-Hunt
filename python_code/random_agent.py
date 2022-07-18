@@ -29,35 +29,37 @@ def vec2mat(coords_state, grid_size=(5,5)):
   # human pos
   r[coords_state[3], coords_state[2]] += 1
   # stag pos
-  r[coords_state[5], coords_state[4]] += 0.8039
-  g[coords_state[5], coords_state[4]] += 0.498
-  b[coords_state[5], coords_state[4]] += 0.1961
+  r[coords_state[5], coords_state[4]] += 0.5
+  g[coords_state[5], coords_state[4]] += 0.5
+  b[coords_state[5], coords_state[4]] += 0.5
   # plants pos
   for i in range(6, 12, 2):
       g[coords_state[i+1], coords_state[i]] += 1
 
-  # plt.imshow(np.dstack((r,g,b)))
-  # plt.show()
-  return NormalizeData(np.dstack((r,g,b)))
+  return np.dstack((r,g,b))
 
 def combine_following_states(prev, current):
   r2, g2, b2 = current[:, :, 0], current[:, :, 1], current[:, :, 2]
-  human_pos = np.where(r2 == 1)
-  computer_pos = np.where(b2 == 1)
-  bushes_pos = np.where(g2 == 1)
-  stag_pos = np.where(r2 == 0.8039, g2 == 0.498, b2 == 0.1961)
-  
-  new_cell = prev * 0.75
+  human_pos = np.where((r2 == 1) | (r2 == 1.5))
+  computer_pos = np.where((b2 == 1) | (b2 == 1.5))
+  bushes_pos = np.where((g2 == 1) | (g2 == 1.5))
+  stag_pos = np.where(((r2 == 0.5) & (g2 == 0.5) & (b2 == 0.5)) |
+                      ((r2 == 1.5) & (g2 == 0.5) & (b2 == 0.5)) |
+                      ((r2 == 0.5) & (g2 == 1.5) & (b2 == 0.5)) |
+                      ((r2 == 0.5) & (g2 == 0.5) & (b2 == 1.5)))
+
+  new_cell = prev * 0.9
 
   new_cell[:, :, 0][human_pos] = 1
+  new_cell[:, :, 1] = np.zeros([5,5])
   new_cell[:, :, 1][bushes_pos] = 1
   new_cell[:, :, 2][computer_pos] = 1
 
-  new_cell[:, :, 0][stag_pos] += 0.8039
-  new_cell[:, :, 1][stag_pos] += 0.498
-  new_cell[:, :, 2][stag_pos] += 0.1961
+  new_cell[:, :, 0][stag_pos] += 0.5
+  new_cell[:, :, 1][stag_pos] += 0.5
+  new_cell[:, :, 2][stag_pos] += 0.5
 
-  return new_cell
+  return NormalizeData(new_cell)
 
 class HumamModel:
   def __init__(self):
@@ -134,7 +136,7 @@ for ep in range(episodes):
     next_obs, rewards, done, info = env.step([computer_action, human_action])
     next_obs = next_obs[0]
     next_obs = vec2mat(next_obs)
-    # next_obs = combine_following_states(obs, next_obs)
+    next_obs = combine_following_states(obs, next_obs)
     time.sleep(0.5)
     obs = next_obs
     print("info: " ,ep, iteration, rewards, done, info)
