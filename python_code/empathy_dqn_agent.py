@@ -5,6 +5,8 @@ from gym_stag_hunt.src.games.abstract_grid_game import UP, LEFT, DOWN, RIGHT, ST
 
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+
 import numpy as np
 import random
 import time
@@ -368,13 +370,6 @@ if __name__ == "__main__":
   env = gym.make("StagHunt-Hunt-v0", obs_type='coords', load_renderer= True, enable_multiagent=True, forage_quantity=3) # you can pass config parameters here
 
   #train dqn agent
-  # run(env, episodes=4000, epsilon_decay = 0.9995, train=True, SARL=False)
+  run(env, episodes=4000, epsilon_decay = 0.9995, train=True, SARL=False)
   #test dqn agent
   # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, SARL=False)
-
-  #train SARL dqn agent
-  run(env, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.488 , SARL=True)
-  #test SARL dqn agent
-  # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.57, SARL=True)
-  
-  # env.close()

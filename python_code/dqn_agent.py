@@ -5,6 +5,8 @@ from gym_stag_hunt.src.games.abstract_grid_game import UP, LEFT, DOWN, RIGHT, ST
 
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+
 import numpy as np
 import random
 import time
@@ -116,8 +118,8 @@ class Follow_Stag:
   
 
 class HumamModel:
-  def __init__(self):
-    self.model = tf.keras.models.load_model('./data/humanModel/model_v0.h5')
+  def __init__(self, version="v0"):
+    self.model = tf.keras.models.load_model('./data/humanModel/model_'+version+'.h5')
 
   def predict_action(self, state):
     position = np.where(state[:, :, 0] == np.amax(state[:, :, 0]))
@@ -292,14 +294,15 @@ class Monitor:
     return str(self.averages[-1])[:5]
 
 def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SARL=False):
-  human_model = HumamModel()
+  human_model_version = "v1"
+  human_model = HumamModel(human_model_version)
   # human_model = Follow_Stag()
   if not train:
     agent_model = DQNAgent((5,5,3), env.action_space.n, epsilon_decay, 0)
     if SARL:
-      agent_model.load("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
+      agent_model.load("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version+".h5")
     else:
-      agent_model.load("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
+      agent_model.load("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version+".h5")
     episodes = 5
   else:
     agent_model = DQNAgent((5,5,3), env.action_space.n, epsilon_decay, 1.0)
@@ -348,9 +351,9 @@ def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SAR
       agent_model.updateEpsilon()
       # every episode, plot the result
       if SARL:
-        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, "SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay))
+        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, "SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version)
       else:
-        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, "ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay))
+        average = monitor.PlotModel(ep_reward, ep_human_reward, ep, "ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version)
       print("episode: {}/{}, score: {:.2}, average: {}, e: {:.3}, SARL score: {}".format(ep, episodes, ep_reward, average, agent_model.epsilon, ep_SARL_reward))
     else:
       print("episode: {}/{}, score: {:.2}, SARL score: {}".format(ep, episodes, ep_reward, ep_SARL_reward))
@@ -360,22 +363,22 @@ def run(env, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SAR
 
   if train:
     if SARL:
-      agent_model.save("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
+      agent_model.save("data/weights/SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version+".h5")
     else:
-      agent_model.save("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+".h5")
+      agent_model.save("data/weights/ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay)+"_"+human_model_version+".h5")
   env.close()
 
 if __name__ == "__main__":
   env = gym.make("StagHunt-Hunt-v0", obs_type='coords', load_renderer= True, enable_multiagent=True, forage_quantity=3) # you can pass config parameters here
 
   #train dqn agent
-  # run(env, episodes=4000, epsilon_decay = 0.9995, train=True, SARL=False)
+  run(env, episodes=4000, epsilon_decay = 0.9995, train=True, SARL=False)
   #test dqn agent
   # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, SARL=False)
 
   #train SARL dqn agent
-  run(env, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.505 , SARL=True)
+  # run(env, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.52 , SARL=True)
   #test SARL dqn agent
-  # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.57, SARL=True)
+  # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.52, SARL=True)
   
   # env.close()

@@ -18,8 +18,8 @@ class HuntEnv(AbstractMarkovStagHuntEnv):
         stag_follows=True,
         run_away_after_maul=False,
         forage_quantity=3,
-        stag_reward=3,
-        forage_reward=1,
+        stag_reward=1,
+        forage_reward=0.25,
         mauling_punishment=0,
     ):
         """
