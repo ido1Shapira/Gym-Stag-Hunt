@@ -34,9 +34,9 @@ class HumamModel:
           action = random.choices(list(dict_scores.keys()), weights=list(dict_scores.values()))[0]
     else:
       if action == 0:
-        print("FollowStagAgent")
+        # print("FollowStagAgent")
         action = self.follow_stag.act(state)
       else:
-        print("ClosestBushAgent")
+        # print("ClosestBushAgent")
         action = self.closest_bush.act(state)
     return action

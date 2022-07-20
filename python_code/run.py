@@ -78,7 +78,6 @@ random_agent=False, follow_stag=False, closest_bush=False, on=None):
     ep_human_reward = 0
     ep_SARL_reward = 0
     for _ in range(episodes_per_game):
-      time.sleep(0.5)
       if random_agent:
         position = np.where(obs[:, :, 2] == np.amax(obs[:, :, 2]))
         computer_action = randomAction(position)
