@@ -1,0 +1,3 @@
+v1.1 = human model with 62 accurate without history, predicts left,right,up,down
+v1.2 = human model with 62 accurate with history, predicts left,right,up,down
+v2 = human model with  accurate without history, predicts follow stag, closest bushe
