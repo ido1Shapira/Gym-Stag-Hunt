@@ -371,12 +371,12 @@ if __name__ == "__main__":
   env = gym.make("StagHunt-Hunt-v0", obs_type='coords', load_renderer= True, enable_multiagent=True, forage_quantity=3) # you can pass config parameters here
 
   #train dqn agent
-  # run(env, episodes=2000, epsilon_decay = 0.999, train=True, SARL=False)
+  run(env, episodes=4000, epsilon_decay = 0.9995, train=True, SARL=False)
   #test dqn agent
   # run(env, episodes=2000, epsilon_decay = 0.999, train=False, SARL=False)
 
   #train SARL dqn agent
-  run(env, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.52 , SARL=True)
+  # run(env, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.52 , SARL=True)
   #test SARL dqn agent
   # run(env, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.57, SARL=True)
   
