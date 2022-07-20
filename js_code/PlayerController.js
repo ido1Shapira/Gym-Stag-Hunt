@@ -41,7 +41,7 @@ class PlayerController extends Controller{
     
         this.TYPES[type] = true;
         this.type = type;
-        console.log(this.type);
+        // console.log(this.type);
 
         this.loadAgent();
     }
