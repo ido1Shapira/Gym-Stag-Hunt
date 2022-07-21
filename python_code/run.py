@@ -144,7 +144,7 @@ if __name__ == "__main__":
   prefix_load_human_model = "" # dropout_ , empathy_
   
   #run random agent
-#   run(env, version, prefix_load_human_model, random_agent=True)
+  run(env, version, prefix_load_human_model, random_agent=True)
   
   #run follow stag agent
 #   run(env, version, prefix_load_human_model, follow_stag=True, on='computer')
@@ -158,6 +158,6 @@ if __name__ == "__main__":
 #   run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=False, SARL=False)
 
   #train SARL dqn agent
-  run(env, version, prefix_load_human_model, episodes=2000, epsilon_decay = 0.999, train=True, beta=0.26 , SARL=True)
+  run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.52 , SARL=True)
   #test SARL dqn agent
 #   run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.25, SARL=True)
