@@ -1,5 +1,5 @@
 from gym.spaces import Discrete, Box
-from numpy import uint8
+from numpy import uint8, int8
 
 from gym_stag_hunt.envs.gym.abstract_markov_staghunt import AbstractMarkovStagHuntEnv
 from gym_stag_hunt.src.entities import TILE_SIZE
@@ -18,8 +18,8 @@ class HuntEnv(AbstractMarkovStagHuntEnv):
         stag_follows=True,
         run_away_after_maul=False,
         forage_quantity=3,
-        stag_reward=5,
-        forage_reward=1,
+        stag_reward=1,
+        forage_reward=0.2,
         mauling_punishment=0,
     ):
         """
@@ -96,5 +96,5 @@ class HuntEnv(AbstractMarkovStagHuntEnv):
             )
         elif obs_type == "coords":
             self.observation_space = Box(
-                0, max(grid_size), shape=(6 + forage_quantity * 2,), dtype=uint8
+                0, max(grid_size), shape=(6 + forage_quantity * 2,), dtype=int8
             )

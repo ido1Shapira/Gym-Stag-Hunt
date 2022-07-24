@@ -1,8 +1,7 @@
 from help_func import *
 
 def calc_distance(pos1, pos2):    
-    return abs(np.int8(pos1[0] - pos2[0])) + abs(np.int8(pos1[1] - pos2[1]))
-    # return sqrt((pos1[0] - pos2[0])**2 + (pos1[1] - pos2[1])**2)
+    return abs(pos1[0] - pos2[0]) + abs(pos1[1] - pos2[1])
 
 class ClosestBush:
   def __init__(self, agent, grid_size=(5,5)):

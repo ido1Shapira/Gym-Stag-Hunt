@@ -1,5 +1,5 @@
 from random import random
-from numpy import zeros, uint8, array, hypot
+from numpy import zeros, int8, uint8, array, hypot
 
 from gym_stag_hunt.src.games.abstract_grid_game import STAND, AbstractGridGame
 
@@ -66,7 +66,7 @@ class StagHunt(AbstractGridGame):
         self._tagged_plants = []  # harvested plants that need to be re-spawned
 
         # Entity Positions
-        self._stag_pos = zeros(2, dtype=uint8)
+        self._stag_pos = zeros(2, dtype=int8)
         self._plants_pos = []
         self.reset_entities()  # place the entities on the grid
 
