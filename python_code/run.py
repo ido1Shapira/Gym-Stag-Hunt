@@ -70,6 +70,7 @@ random_agent=False, follow_stag=False, closest_bush=False, on=None):
             human_model.update_pos(obs)
     if version == 'v2':
         human_model.update_pos(obs)
+        agent_model.update_pos(obs)
 
     obs = vec2mat(obs)
     if not train:
@@ -84,7 +85,7 @@ random_agent=False, follow_stag=False, closest_bush=False, on=None):
         position = np.where(obs[:, :, 2] == np.amax(obs[:, :, 2]))
         computer_action = randomAction(position)
       else:
-        computer_action = agent_model.act(obs)
+        binary_action, computer_action = agent_model.act(obs)
       human_action = human_model.act(obs)
       next_obs, rewards, done, info = env.step([computer_action, human_action])
       next_obs = next_obs[0]
@@ -95,6 +96,7 @@ random_agent=False, follow_stag=False, closest_bush=False, on=None):
             human_model.update_pos(next_obs)
       if version == 'v2':
         human_model.update_pos(next_obs)
+        agent_model.update_pos(next_obs)
 
       next_obs = vec2mat(next_obs)
     #   next_obs = combine_following_states(obs, next_obs)
@@ -102,9 +104,9 @@ random_agent=False, follow_stag=False, closest_bush=False, on=None):
       SARL_reward = beta * agent_reward + (1 - beta) * rewards[1]
       if train:
         if SARL:
-          agent_model.remember(np.expand_dims(obs, axis=0), computer_action, SARL_reward, np.expand_dims(next_obs, axis=0), done)
+          agent_model.remember(np.expand_dims(obs, axis=0), binary_action, SARL_reward, np.expand_dims(next_obs, axis=0), done)
         else:
-          agent_model.remember(np.expand_dims(obs, axis=0), computer_action, agent_reward, np.expand_dims(next_obs, axis=0), done)
+          agent_model.remember(np.expand_dims(obs, axis=0), binary_action, agent_reward, np.expand_dims(next_obs, axis=0), done)
         agent_model.replay()
       else:
         time.sleep(0.2)
@@ -122,12 +124,12 @@ random_agent=False, follow_stag=False, closest_bush=False, on=None):
       agent_model.updateEpsilon()
       # every episode, plot the result
       if SARL:
-        average = monitor.PlotModel(ep_reward*4, ep_human_reward*4, ep, "SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay))
+        average = monitor.PlotModel(ep_reward*5, ep_human_reward*5, ep, "SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay))
       else:
-        average = monitor.PlotModel(ep_reward*4, ep_human_reward*4, ep, prefix_load_human_model+"ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay))
-      print("episode: {}/{}, score: {:.2}, average: {}, e: {:.3}, SARL score: {}".format(ep, episodes, ep_reward*4, average*4, agent_model.epsilon, ep_SARL_reward*4))
+        average = monitor.PlotModel(ep_reward*5, ep_human_reward*5, ep, prefix_load_human_model+"ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay))
+      print("episode: {}/{}, score: {:.3}, average: {:.3}, e: {:.3}, SARL score: {:.3}".format(ep, episodes, ep_reward*5, average*5, agent_model.epsilon, ep_SARL_reward*5))
     else:
-      print("episode: {}/{}, score: {:.2}, SARL score: {}".format(ep, episodes, ep_reward*4, ep_SARL_reward*4))
+      print("episode: {}/{}, score: {:.3}, SARL score: {:.3}".format(ep, episodes, ep_reward*5, ep_SARL_reward*5))
     ep_reward = 0
     ep_human_reward = 0
     ep_SARL_reward = 0

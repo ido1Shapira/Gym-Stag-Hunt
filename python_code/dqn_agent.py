@@ -9,10 +9,12 @@ from tensorflow.keras.layers import Input, Dense, Conv2D, MaxPool2D, Flatten
 from tensorflow.keras.optimizers import Adam
 
 from help_func import *
+from follow_stag_agent import FollowStag
+from closest_bush_agent import ClosestBush
 
 class DQNAgent:
     def __init__(self, state_size, action_size, epsilon_decay, initial_epsilon):
-        
+        action_size = 2
         self.memory = deque(maxlen=100000)
         
         self.gamma = 0.95 # discount rate
@@ -35,6 +37,13 @@ class DQNAgent:
         # create main model
         self.model = self.OurModel(input_shape=self.state_size, action_space = action_size)
         self.target_model = self.OurModel(input_shape=self.state_size, action_space = action_size)
+
+        self.follow_stag = FollowStag("computer")
+        self.closest_bush = ClosestBush("computer")
+
+    def update_pos(self, coords_state):
+        self.follow_stag.update_pos(coords_state)
+        self.closest_bush.update_pos(coords_state)
 
     def OurModel(self, input_shape, action_space):
       X_input = Input(shape=input_shape)
@@ -73,12 +82,20 @@ class DQNAgent:
         self.memory.append((state, action, reward, next_state, done))
 
     def act(self, state):
-      if np.random.random() <= self.epsilon:
-        position = np.where(state[:, :, 2] == np.amax(state[:, :, 2]))
-        return randomAction(position)
-      else:
-        state = tf.expand_dims(state, 0)  # Create a batch
-        return np.argmax(self.model.predict(state))
+        if np.random.random() <= self.epsilon:
+            position = np.where(state[:, :, 2] == np.amax(state[:, :, 2]))
+            binary_action = np.random.choice([0,1])
+        else:
+            state = tf.expand_dims(state, 0)  # Create a batch
+            binary_action = np.argmax(self.model.predict(state))
+            
+        if binary_action == 0:
+            # print("ClosestBushAgent")
+            action = self.closest_bush.act(state)
+        else:
+            # print("FollowStagAgent")
+            action = self.follow_stag.act(state)
+        return binary_action, action
 
     def replay(self):
         if len(self.memory) < self.train_start:
