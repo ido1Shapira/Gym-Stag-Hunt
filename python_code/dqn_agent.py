@@ -145,6 +145,7 @@ class DQNAgent:
 
     def load(self, name):
         self.model = load_model(name)
+        return self
 
     def updateEpsilon(self):
         if self.epsilon > self.epsilon_min:
