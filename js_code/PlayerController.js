@@ -92,10 +92,10 @@ class PlayerController extends Controller{
         var path = 'data/models/';
         switch(this.type) {
             case "ddqn":
-                path += 'ddqn_agent_4000_0.9995_withoutHistory';
+                path += 'ddqn_agent_4000_0.9995_v2';
                 break;
             case "sarl ddqn":
-                path += 'SARL_ddqn_agent_0.57_4000_0.9995_withoutHistory';
+                path += 'SARL_ddqn_agent_0.2_4000_0.9995_v2';
                 break;
             case "empathy ddqn":
                 path += 'empathy_ddqn_agent_4000_0.9995_withoutHistory';
@@ -162,9 +162,9 @@ class PlayerController extends Controller{
         //human pos
         r.set(state[2], state[3], 1);
         //stag pos
-        r.set(state[4], state[5], r.get(state[4], state[5]) + 0.8039);
-        g.set(state[4], state[5], g.get(state[4], state[5]) + 0.498);
-        b.set(state[4], state[5], b.get(state[4], state[5]) + 0.1961);
+        r.set(state[4], state[5], r.get(state[4], state[5]) + 0.5);
+        g.set(state[4], state[5], g.get(state[4], state[5]) + 0.5);
+        b.set(state[4], state[5], b.get(state[4], state[5]) + 0.5);
         //plants pos
         for( var i=6; i<12; i+=2) {
             g.set(state[i], state[i+1], g.get(state[i], state[i+1]) + 1);
@@ -183,24 +183,34 @@ class PlayerController extends Controller{
         var tensorImg = tf.tensor3d(img).expandDims(0);
         var score = this.model.predict(tensorImg).dataSync();
         var dict_scores = {
-            0: score[0], //left
-            1: score[1], //up
-            2: score[2], //right
-            3: score[3], //down
+            0: score[0], //ClosestBushAgent # left
+            1: score[1], //FollowStagAgent # up
+            // 2: score[2], //right
+            // 3: score[3], //down
         }
-        var action = this.argmax(dict_scores);
-        while(! this.validAction(this.toAction[action])) {
-            delete dict_scores[action];
-            var prev_action = action;
-            action = this.argmax(dict_scores);
-            if (action == prev_action) {
-                console.log("agent take a random action because action: " + action + "is not allowed");
-                return this.random();
-            }
+        // var action = this.argmax(dict_scores);
+        // while(! this.validAction(this.toAction[action])) {
+        //     delete dict_scores[action];
+        //     var prev_action = action;
+        //     action = this.argmax(dict_scores);
+        //     if (action == prev_action) {
+        //         console.log("agent take a random action because action: " + action + "is not allowed");
+        //         return this.random();
+        //     }
             
-        }
+        // }
 
+        var binary_action = this.argmax(dict_scores);
+        if(binary_action == 0) {
+            // console.log("ClosestBushAgent")
+            var action = this.closest(state)
+        }
+        else {
+            // console.log("FollowStagAgent")
+            var action = this.follow_stag(state)
+        }   
         
-        return this.toAction[action];
+        return action;
+        // return this.toAction[action];
     }  
 }

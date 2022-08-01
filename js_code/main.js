@@ -248,11 +248,12 @@ function logics()
 	}
 
 	//check for overlaps stag
-	if(stag.tileFrom[0] == human_player.tileFrom[0] && stag.tileFrom[1] == human_player.tileFrom[1]) {
-		if(stag.tileFrom[0] == computer_player.tileFrom[0] && stag.tileFrom[1] == computer_player.tileFrom[1]) {
+	if(stag.tileTo[0] == human_player.tileTo[0] && stag.tileTo[1] == human_player.tileTo[1]) {
+		if(stag.tileTo[0] == computer_player.tileTo[0] && stag.tileTo[1] == computer_player.tileTo[1]
+			& (currentFrameTime-human_player.timeMoved)>=human_player.delayMove) {
 			human_player.score = human_player.score + stag_reward;
 			computer_player.score = computer_player.score + stag_reward;
-			stag.set_in_random_tile([computer_player.tileFrom, human_player.tileFrom, stag.tileFrom], shrubs);
+			stag.set_in_random_tile([computer_player.tileFrom, human_player.tileTo, stag.tileTo], shrubs);
 		}
 		// else {
 		// 	human_player.score = human_player.score + mauling_punishment;		
