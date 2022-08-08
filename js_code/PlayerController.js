@@ -95,7 +95,7 @@ class PlayerController extends Controller{
                 path += 'ddqn_agent_4000_0.9995_v2';
                 break;
             case "sarl ddqn":
-                path += 'SARL_ddqn_agent_0.2_4000_0.9995_v2';
+                path += 'SARL_ddqn_agent_0.6_4000_0.9995_v2';
                 break;
             case "empathy ddqn":
                 path += 'empathy_ddqn_agent_4000_0.9995_withoutHistory';
