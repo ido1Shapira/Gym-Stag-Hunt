@@ -6,10 +6,10 @@ class PlayerController extends Controller{
 
         "ddqn": false,
         "sarl ddqn": false,
-        "empathy ddqn": false,
-        "dropout ddqn": false,
+        // "empathy ddqn": false,
+        // "dropout ddqn": false,
 
-        "human model": false,
+        // "human model": false,
     }
 
     toAction = {
@@ -57,8 +57,8 @@ class PlayerController extends Controller{
             case "closest":
                 return this.closest(state);
 
-            case "ddqn": case "sarl ddqn": case "human model":
-            case "empathy ddqn": case "dropout ddqn":
+            case "ddqn": case "sarl ddqn":
+            // case "human model": case "empathy ddqn": case "dropout ddqn":
                 return this.predict(state);
             default:
                 throw "move(state): not a valid baseline"
@@ -97,15 +97,15 @@ class PlayerController extends Controller{
             case "sarl ddqn":
                 path += 'SARL_ddqn_agent_0.6_4000_0.9995_v2';
                 break;
-            case "empathy ddqn":
-                path += 'empathy_ddqn_agent_4000_0.9995_withoutHistory';
-                break;
-            case "dropout ddqn":
-                path += 'dropout_ddqn_agent_4000_0.9995_withoutHistory';
-                break;
-            case "human model":
-                path += 'human_model_withoutHistory'
-                break;
+            // case "empathy ddqn":
+            //     path += 'empathy_ddqn_agent_4000_0.9995';
+            //     break;
+            // case "dropout ddqn":
+            //     path += 'dropout_ddqn_agent_4000_0.9995';
+            //     break;
+            // case "human model":
+            //     path += 'human_model'
+            //     break;
             default:
                 deepRL = false;
 
