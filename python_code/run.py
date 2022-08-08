@@ -1,6 +1,6 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 import time
 import gym
@@ -15,6 +15,7 @@ from closest_bush_agent import ClosestBush
 
 def run(env, version, prefix_load_human_model, episodes = 1100, epsilon_decay=0.9975, train=False, beta = 0.5, SARL=False,
 random_agent=False, follow_stag=False, closest_bush=False, on=None):
+  unnormilze_number = 4
   if follow_stag:
     if on=='computer':
         human_model = HumamModel(version, prefix_load_human_model)
@@ -123,15 +124,16 @@ random_agent=False, follow_stag=False, closest_bush=False, on=None):
       agent_model.updateEpsilon()
       # every episode, plot the result
       if SARL:
-        average = monitor.PlotModel(ep_reward*5, ep_human_reward*5, ep, "SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay))
+        average = monitor.PlotModel(ep_reward*unnormilze_number, ep_human_reward*unnormilze_number, ep, "SARL_ddqn_agent"+"_"+str(beta)+"_"+str(episodes)+"_"+str(epsilon_decay))
       else:
-        average = monitor.PlotModel(ep_reward*5, ep_human_reward*5, ep, prefix_load_human_model+"ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay))
-      print("episode: {}/{}, score: {:.3}, average: {}, e: {:.3}, SARL score: {:.3}".format(ep, episodes, ep_reward*5, average, agent_model.epsilon, ep_SARL_reward*5))
+        average = monitor.PlotModel(ep_reward*unnormilze_number, ep_human_reward*unnormilze_number, ep, prefix_load_human_model+"ddqn_agent"+"_"+str(episodes)+"_"+str(epsilon_decay))
+      print("episode: {}/{}, score: {:.3}, average: {}, e: {:.3}, SARL score: {:.3}".format(ep, episodes, ep_reward*unnormilze_number, average, agent_model.epsilon, ep_SARL_reward*unnormilze_number))
     else:
-      print("episode: {}/{}, score: {:.3}, SARL score: {:.3}".format(ep, episodes, ep_reward*5, ep_SARL_reward*5))
+      print("episode: {}/{}, score: {:.3}, SARL score: {:.3}".format(ep, episodes, ep_reward*unnormilze_number, ep_SARL_reward*unnormilze_number))
     ep_reward = 0
     ep_human_reward = 0
     ep_SARL_reward = 0
+    print("counter: {}".format(agent_model.get_bush_counter()))
 
   if train:
     if SARL:
@@ -158,9 +160,9 @@ if __name__ == "__main__":
   #train dqn agent
   # run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=True, SARL=False)
   #test dqn agent
-  # run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=False, SARL=False)
+  run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=False, SARL=False)
 
   #train SARL dqn agent
-  run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.2 , SARL=True)
+  # run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.48 , SARL=True)
   #test SARL dqn agent
   # run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=False, beta=0.2, SARL=True)

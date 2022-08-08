@@ -41,6 +41,8 @@ class DQNAgent:
         self.follow_stag = FollowStag("computer")
         self.closest_bush = ClosestBush("computer")
 
+        self.closest_bush_counter = 0
+
     def update_pos(self, coords_state):
         self.follow_stag.update_pos(coords_state)
         self.closest_bush.update_pos(coords_state)
@@ -92,6 +94,7 @@ class DQNAgent:
         if binary_action == 0:
             # print("ClosestBushAgent")
             action = self.closest_bush.act(state)
+            self.closest_bush_counter += 1
         else:
             # print("FollowStagAgent")
             action = self.follow_stag.act(state)
@@ -153,3 +156,8 @@ class DQNAgent:
 
     def save(self, name):
         self.model.save(name)
+    
+    def get_bush_counter(self):
+        result = self.closest_bush_counter
+        self.closest_bush_counter = 0
+        return result

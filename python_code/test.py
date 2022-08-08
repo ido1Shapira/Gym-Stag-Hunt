@@ -13,8 +13,8 @@ from follow_stag_agent import FollowStag
 from closest_bush_agent import ClosestBush
 
 def test(env, computer, human, episodes):
-  computer_scores, human_scores = [],[]
-
+  computer_scores, human_scores, bush_counter_scores = [],[], []
+  unnormilze_number = 4
   for ep in range(episodes):    
     obs = env.reset()
     
@@ -43,21 +43,23 @@ def test(env, computer, human, episodes):
     
     # print("episode: {}/{}, score: {:.3}".format(ep, episodes, ep_reward*5))
 
-    computer_scores.append(ep_reward*5)
-    human_scores.append(ep_human_reward*5)
+    computer_scores.append(ep_reward * unnormilze_number)
+    human_scores.append(ep_human_reward * unnormilze_number)
+    bush_counter_scores.append(computer.get_bush_counter())
 
     ep_reward = 0
     ep_human_reward = 0
   
-  return sum(computer_scores) / len(computer_scores), sum(human_scores) / len(human_scores)
+  return sum(computer_scores) / len(computer_scores), sum(human_scores) / len(human_scores), sum(bush_counter_scores) / len(bush_counter_scores)
 
 
 if __name__ == "__main__":
   env = gym.make("StagHunt-Hunt-v0", obs_type='coords', load_renderer= True, enable_multiagent=True, forage_quantity=3) # you can pass config parameters here
 
-  computer_agents = {'sarl ddqn 0.2': DQNAgent((5,5,3), env.action_space.n, 0.9995, 0).load("data/weights/SARL_ddqn_agent_0.2_4000_0.9995_v2.h5"),
+  computer_agents = {'sarl ddqn 0.6': DQNAgent((5,5,3), env.action_space.n, 0.9995, 0).load("data/weights/SARL_ddqn_agent_0.6_4000_0.9995_v2.h5"),
                      'ddqn': DQNAgent((5,5,3), env.action_space.n, 0.999, 0).load("data/weights/ddqn_agent_4000_0.9995_v2.h5"),
-                    #  'sarl ddqn 0.48': DQNAgent((5,5,3), env.action_space.n, 0.9995, 0).load("data/weights/SARL_ddqn_agent_0.48_4000_0.9995_v2.h5")
+                     'sarl ddqn 0.48': DQNAgent((5,5,3), env.action_space.n, 0.9995, 0).load("data/weights/SARL_ddqn_agent_0.48_4000_0.9995_v2.h5"),
+                     'sarl ddqn 0.2': DQNAgent((5,5,3), env.action_space.n, 0.9995, 0).load("data/weights/SARL_ddqn_agent_0.2_4000_0.9995_v2.h5")
                     }
   
   version = "v2"
@@ -67,17 +69,18 @@ if __name__ == "__main__":
                   'human_model': HumamModel(version, prefix_load_human_model),
                 }
 
-  episodes = 250
+  episodes = 1000
   
   for agent in computer_agents:
-    computer_avg, human_avg = [], []
+    computer_avg, human_avg, bushes_counter_avg = [], [], []
     for human in human_agents:
       start_time = time.time()
-      computer_average, human_average = test(env, computer_agents[agent], human_agents[human], episodes)
+      computer_average, human_average, bushes_counter_average = test(env, computer_agents[agent], human_agents[human], episodes)
       computer_avg.append(computer_average)
       human_avg.append(human_average)
+      bushes_counter_avg.append(bushes_counter_average)
       print('________________________________________________________________________________')
-      print(agent + ' | ' + human + ' | computer_average='+ str(computer_average) + '| human_average=' + str(human_average) + ' | time=' + str(time.time() - start_time))
+      print(agent + ' | ' + human + ' | computer_average='+ str(computer_average) + '| human_average=' + str(human_average) + ' | time=' + str(time.time() - start_time) + ' | bushes_counter_average= '+ str(bushes_counter_average))
     print('________________________________________________________________________________')
-    print(agent + ' | computer_average='+ str(computer_average) + '| human_average=' + str(human_average))
+    print(agent + ' | computer_average='+ str(computer_average) + '| human_average=' + str(human_average) +  ' | bushes_counter_average= '+ str(bushes_counter_average))
     print('________________________________________________________________________________')
