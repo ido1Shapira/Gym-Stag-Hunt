@@ -1,6 +1,6 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 import time
 import gym
@@ -133,7 +133,7 @@ random_agent=False, follow_stag=False, closest_bush=False, on=None):
     ep_reward = 0
     ep_human_reward = 0
     ep_SARL_reward = 0
-    print("counter: {}".format(agent_model.get_bush_counter()))
+    # print("counter: {}".format(agent_model.get_bush_counter()))
 
   if train:
     if SARL:
@@ -146,7 +146,7 @@ if __name__ == "__main__":
   env = gym.make("StagHunt-Hunt-v0", obs_type='coords', load_renderer= True, enable_multiagent=True, forage_quantity=3) # you can pass config parameters here
 
   version = "v2"
-  prefix_load_human_model = "" # dropout_ , empathy_
+  prefix_load_human_model = "empathy_" # dropout_ , empathy_
   
   #run random agent
   # run(env, version, prefix_load_human_model, random_agent=True)
@@ -158,9 +158,9 @@ if __name__ == "__main__":
 #   run(env, version, prefix_load_human_model, closest_bush=True, on='computer')
 
   #train dqn agent
-  # run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=True, SARL=False)
+  run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=True, SARL=False)
   #test dqn agent
-  run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=False, SARL=False)
+  # run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=False, SARL=False)
 
   #train SARL dqn agent
   # run(env, version, prefix_load_human_model, episodes=4000, epsilon_decay = 0.9995, train=True, beta=0.48 , SARL=True)

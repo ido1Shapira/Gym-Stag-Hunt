@@ -1,6 +1,6 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 import time
 import gym
@@ -58,8 +58,8 @@ if __name__ == "__main__":
 
   computer_agents = {'sarl ddqn 0.6': DQNAgent((5,5,3), env.action_space.n, 0.9995, 0).load("data/weights/SARL_ddqn_agent_0.6_4000_0.9995_v2.h5"),
                      'ddqn': DQNAgent((5,5,3), env.action_space.n, 0.999, 0).load("data/weights/ddqn_agent_4000_0.9995_v2.h5"),
-                     'sarl ddqn 0.48': DQNAgent((5,5,3), env.action_space.n, 0.9995, 0).load("data/weights/SARL_ddqn_agent_0.48_4000_0.9995_v2.h5"),
-                     'sarl ddqn 0.2': DQNAgent((5,5,3), env.action_space.n, 0.9995, 0).load("data/weights/SARL_ddqn_agent_0.2_4000_0.9995_v2.h5")
+                     'empathy ddqn': DQNAgent((5,5,3), env.action_space.n, 0.9995, 0).load("data/weights/empathy_ddqn_agent_4000_0.9995_v2.h5"),
+                     'peccimistic ddqn': DQNAgent((5,5,3), env.action_space.n, 0.9995, 0).load("data/weights/dropout_ddqn_agent_4000_0.9995_v2.h5")
                     }
   
   version = "v2"
