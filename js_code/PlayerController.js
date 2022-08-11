@@ -6,8 +6,8 @@ class PlayerController extends Controller{
 
         "ddqn": false,
         "sarl ddqn": false,
-        // "empathy ddqn": false,
-        // "dropout ddqn": false,
+        "empathy ddqn": false,
+        "dropout ddqn": false,
 
         // "human model": false,
     }
@@ -38,6 +38,10 @@ class PlayerController extends Controller{
             var ddqns = Object.keys(this.TYPES).slice(3,5);
             type = ddqns[Math.floor(ddqns.length * Math.random())];
         }
+        if(type == -4) {
+            var moresol = Object.keys(this.TYPES).slice(5,7);
+            type = moresol[Math.floor(moresol.length * Math.random())];
+        }
     
         this.TYPES[type] = true;
         this.type = type;
@@ -58,7 +62,8 @@ class PlayerController extends Controller{
                 return this.closest(state);
 
             case "ddqn": case "sarl ddqn":
-            // case "human model": case "empathy ddqn": case "dropout ddqn":
+            // case "human model":
+            case "empathy ddqn": case "dropout ddqn":
                 return this.predict(state);
             default:
                 throw "move(state): not a valid baseline"
@@ -97,12 +102,12 @@ class PlayerController extends Controller{
             case "sarl ddqn":
                 path += 'SARL_ddqn_agent_0.6_4000_0.9995_v2';
                 break;
-            // case "empathy ddqn":
-            //     path += 'empathy_ddqn_agent_4000_0.9995';
-            //     break;
-            // case "dropout ddqn":
-            //     path += 'dropout_ddqn_agent_4000_0.9995';
-            //     break;
+            case "empathy ddqn":
+                path += 'empathy_ddqn_agent_4000_0.9995_v2';
+                break;
+            case "dropout ddqn":
+                path += 'dropout_ddqn_agent_4000_0.9995_v2';
+                break;
             // case "human model":
             //     path += 'human_model'
             //     break;
